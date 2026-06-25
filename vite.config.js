@@ -13,6 +13,7 @@ export default defineConfig({
         'google-maps': resolve(__dirname, 'google-maps.html'),
         privacy: resolve(__dirname, 'privacy.html'),
         tos: resolve(__dirname, 'tos.html'),
+        'how-to-find-a-reliable-virtual-assistant-for-your-dental-practice-in-2026': resolve(__dirname, 'how-to-find-a-reliable-virtual-assistant-for-your-dental-practice-in-2026.html'),
       },
     },
   },
