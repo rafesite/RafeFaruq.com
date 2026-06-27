@@ -1,0 +1,1281 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Website Design &amp; Development — Rafe Faruq</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Cal.com embed -->
+  <script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "strategy-call", {origin:"https://app.cal.com"});
+  Cal.config = Cal.config || {};
+  Cal.config.forwardQueryParams = true;
+  Cal.ns["strategy-call"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#1DA1FF"},"dark":{"cal-brand":"#1DA1FF"}},"hideEventTypeDetails":false,"layout":"week_view"});
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #0d0d0d;
+      --bg3: #111111;
+      --bg4: #141414;
+      --accent: #00D4FF;
+      --accent-dim: rgba(0,212,255,0.15);
+      --accent-glow: rgba(0,212,255,0.3);
+      --light: #F4F4F4;
+      --text: #e8e8e8;
+      --muted: #888;
+      --white: #ffffff;
+      --border: rgba(255,255,255,0.08);
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; line-height: 1.6; }
+    ::selection { background: var(--accent); color: #000; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ─── UTILITIES ─────────────────────────────────────────── */
+    .accent { color: var(--accent); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section-label {
+      display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--accent); background: var(--accent-dim);
+      border: 1px solid var(--accent-glow); border-radius: 20px; padding: 5px 14px; margin-bottom: 18px;
+    }
+    .section-title { font-size: clamp(28px,4vw,44px); font-weight: 800; line-height: 1.15; letter-spacing: -1px; color: var(--white); margin-bottom: 14px; }
+    .section-title span { color: var(--accent); }
+    .section-sub { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 600px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px;
+      border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 14px;
+      font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-decoration: none; border: none;
+    }
+    .btn-primary { background: var(--accent); color: #000; }
+    .btn-primary:hover { background: #00b8dc; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,212,255,0.35); }
+    .btn-outline { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+    .btn-outline:hover { background: var(--accent-dim); transform: translateY(-2px); }
+
+    /* Scroll fade-in */
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-left.visible { opacity: 1; transform: translateX(0); }
+    .fade-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ─── NAVBAR ─────────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      width: auto;
+      padding: 0;
+      transition: all 0.3s ease;
+      background: transparent;
+      border: none;
+      border-bottom: none;
+      backdrop-filter: none;
+      right: auto;
+    }
+    #navbar.scrolled {
+      top: 12px;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      height: auto;
+      padding: 7px 10px;
+      background: rgba(15, 15, 20, 0.55);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(0, 212, 255, 0.15);
+      border-radius: 100px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
+      max-width: none;
+      margin: 0;
+    }
+    .nav-logo {
+      padding: 4px 10px 4px 6px;
+      margin-right: 4px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-logo img { height: 40px; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      padding: 9px 20px;
+      border-radius: 100px;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-links a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+    }
+    .nav-links a.active {
+      color: #fff;
+      background: rgba(0, 212, 255, 0.15);
+      border: 1px solid rgba(0, 212, 255, 0.25);
+      box-shadow: 0 0 16px rgba(0,212,255,0.15);
+    }
+    .nav-links .nav-cta {
+      background: var(--accent);
+      color: #000;
+      font-weight: 700;
+      padding: 9px 22px;
+      border-radius: 100px;
+      border: none;
+      margin-left: 6px;
+      font-size: 13px;
+    }
+    .nav-links .nav-cta:hover {
+      background: #00b8dc;
+      transform: none;
+      color: #000;
+    }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a::after { content: ' ▾'; font-size: 9px; opacity: 0.5; }
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(12, 12, 18, 0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(0,212,255,0.15);
+      border-radius: 16px;
+      padding: 6px;
+      min-width: 220px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .dropdown-menu a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      background: transparent;
+    }
+    .dropdown-menu a:hover {
+      background: rgba(0,212,255,0.1);
+      color: #fff;
+    }
+    .dropdown-menu a.dropdown-active {
+      color: var(--accent);
+      background: var(--accent-dim);
+    }
+    .dropdown-menu a .di { font-size: 16px; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
+    .mobile-nav {
+      display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+      background: rgba(10,10,10,0.97); backdrop-filter: blur(20px); z-index: 999;
+      padding: 32px 24px; flex-direction: column; gap: 8px; overflow-y: auto;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-size: 18px; font-weight: 600; color: var(--text); text-decoration: none; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .mobile-nav a:hover { color: var(--accent); }
+    .mobile-services-wrap { border-bottom: 1px solid var(--border); }
+    .mobile-services-toggle { font-size: 18px; font-weight: 600; color: var(--text); padding: 14px 0; cursor: pointer; display: flex; align-items: center; justify-content: space-between; }
+    .mobile-services-toggle:hover { color: var(--accent); }
+    .mobile-services-arrow { font-size: 11px; transition: transform 0.25s; display: inline-block; }
+    .mobile-services-arrow.open { transform: rotate(180deg); }
+    .mobile-services-menu { display: none; padding: 4px 0 4px 16px; flex-direction: column; }
+    .mobile-services-menu.open { display: flex; }
+    .mobile-services-menu a { font-size: 15px !important; font-weight: 500 !important; padding: 9px 0 !important; border-bottom: 1px solid rgba(255,255,255,0.04) !important; color: var(--muted) !important; }
+    .mobile-services-menu a:hover { color: var(--accent) !important; }
+
+    /* ─── HERO ──────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh; background: var(--bg); display: flex; align-items: center;
+      padding-top: 100px; position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: ''; position: absolute; top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #hero::after {
+      content: ''; position: absolute; bottom: -100px; left: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(0,212,255,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #hero-particles-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+    .hero-content {
+      position: relative; z-index: 1; padding: 100px 0 80px; max-width: 700px;
+    }
+    .hero-label {
+      display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 24px;
+    }
+    .hero-label::before { content: ''; display: block; width: 30px; height: 2px; background: var(--accent); }
+    .hero-title { font-size: clamp(36px,5vw,60px); font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; color: var(--white); margin-bottom: 24px; }
+    .hero-title .line2 { color: var(--accent); display: block; }
+    .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.7; max-width: 540px; margin-bottom: 40px; font-weight: 400; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* ─── GUARANTEE BANNER ──────────────────────────────────── */
+    #guarantee {
+      padding: 32px 0 48px;
+    }
+    .guarantee-banner {
+      display: flex; align-items: center; justify-content: space-between; gap: 32px;
+      background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(0,212,255,0.03));
+      border: 1px solid rgba(0,212,255,0.3); border-radius: 16px; padding: 32px 40px;
+    }
+    .guarantee-left { display: flex; align-items: center; gap: 20px; flex: 0 0 auto; }
+    .guarantee-icon { font-size: 48px; line-height: 1; }
+    .guarantee-headline { font-size: 22px; font-weight: 800; color: var(--white); letter-spacing: -0.5px; }
+    .guarantee-headline span { color: var(--accent); }
+    .guarantee-text { font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 480px; }
+
+    /* ─── WHAT I BUILD ──────────────────────────────────────── */
+    #what-i-build { padding: 96px 0; background: var(--bg2); }
+    .wib-header { text-align: center; margin-bottom: 56px; }
+    .wib-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .wib-card {
+      background: var(--bg3); border: 1px solid rgba(0,212,255,0.15); border-radius: 16px;
+      padding: 32px; position: relative; transition: border-color 0.3s, transform 0.3s;
+    }
+    .wib-card:hover { border-color: rgba(0,212,255,0.4); transform: translateY(-4px); }
+    .wib-tag {
+      position: absolute; top: 20px; right: 20px;
+      background: var(--accent-dim); border: 1px solid var(--accent-glow);
+      color: var(--accent); font-size: 11px; font-weight: 700; border-radius: 20px;
+      padding: 4px 12px; letter-spacing: 0.5px;
+    }
+    .wib-icon { font-size: 36px; margin-bottom: 16px; }
+    .wib-title { font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+    .wib-desc { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+    /* ─── WHY CHOOSE ME ─────────────────────────────────────── */
+    #why-me { padding: 96px 0; background: var(--bg); }
+    .whyme-header { text-align: center; margin-bottom: 56px; }
+    .whyme-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .whyme-item {
+      background: var(--bg3); border: 1px solid var(--border); border-radius: 14px;
+      padding: 28px 24px; transition: border-color 0.3s, transform 0.3s;
+    }
+    .whyme-item:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-3px); }
+    .whyme-icon { font-size: 32px; margin-bottom: 14px; }
+    .whyme-title { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .whyme-desc { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
+
+    /* ─── WHO THIS IS FOR ───────────────────────────────────── */
+    #who-for { padding: 96px 0; background: var(--bg2); }
+    .whofor-header { text-align: center; margin-bottom: 56px; }
+    .whofor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 800px; margin: 0 auto; }
+    .whofor-item {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--bg3); border: 1px solid var(--border); border-radius: 12px; padding: 18px 22px;
+      transition: border-color 0.3s;
+    }
+    .whofor-item:hover { border-color: rgba(0,212,255,0.3); }
+    .whofor-check { color: var(--accent); font-size: 18px; font-weight: 700; flex-shrink: 0; }
+    .whofor-label { font-size: 14px; font-weight: 600; color: var(--text); }
+
+    /* ─── PORTFOLIO ─────────────────────────────────────────── */
+    #portfolio { padding: 96px 0; background: var(--bg); }
+    .port-header { text-align: center; margin-bottom: 56px; }
+    .port-stage { position: relative; max-width: 860px; margin: 0 auto; }
+    .port-slides { overflow: hidden; border-radius: 16px; }
+    .port-slide { display: none; }
+    .port-slide.active { display: block; }
+    .port-preview {
+      width: 100%; aspect-ratio: 16/9; background: #1a1a2e; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      position: relative; overflow: hidden; border: 1px solid var(--border);
+      transition: border-color 0.3s;
+    }
+    .port-preview:hover { border-color: rgba(0,212,255,0.4); }
+    .port-preview-text { font-size: 15px; color: var(--muted); text-align: center; pointer-events: none; }
+    .port-preview-text strong { display: block; font-size: 13px; color: rgba(0,212,255,0.5); margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase; }
+    .port-click-hint {
+      position: absolute; bottom: 14px; right: 14px;
+      background: rgba(0,212,255,0.12); border: 1px solid rgba(0,212,255,0.25);
+      color: var(--accent); font-size: 11px; font-weight: 600; border-radius: 20px;
+      padding: 4px 12px; letter-spacing: 0.5px;
+    }
+    .port-info { padding: 24px 0 0; }
+    .port-info-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .port-info-desc { font-size: 14px; color: var(--muted); }
+    .port-controls { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 32px; }
+    .port-btn {
+      width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--border); background: var(--bg3);
+      color: var(--text); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .port-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .port-dots { display: flex; gap: 8px; }
+    .port-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 0.2s; }
+    .port-dot.active { background: var(--accent); transform: scale(1.3); }
+
+    /* Lightbox */
+    .lightbox {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999;
+      align-items: center; justify-content: center; padding: 32px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-inner { position: relative; max-width: 900px; width: 100%; }
+    .lightbox-close {
+      position: absolute; top: -40px; right: 0; background: none; border: none;
+      color: var(--text); font-size: 28px; cursor: pointer; line-height: 1;
+      transition: color 0.2s;
+    }
+    .lightbox-close:hover { color: var(--accent); }
+    .lightbox-preview {
+      width: 100%; aspect-ratio: 16/9; background: #1a1a2e; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lightbox-preview-text { font-size: 16px; color: var(--muted); text-align: center; }
+    .lightbox-preview-text strong { display: block; font-size: 12px; color: rgba(0,212,255,0.5); margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase; }
+    .lightbox-info { padding: 20px 0 0; }
+    .lightbox-info-title { font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .lightbox-info-desc { font-size: 14px; color: var(--muted); }
+
+    /* ─── HOW IT WORKS ──────────────────────────────────────── */
+    #how-it-works { padding: 96px 0; background: var(--light); }
+    .hiw-header { text-align: center; margin-bottom: 56px; }
+    .hiw-header .section-label { background: rgba(0,212,255,0.12); }
+    .hiw-header .section-title { color: #111; }
+    .hiw-header .section-sub { color: #555; margin: 0 auto; }
+    .hiw-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+    .hiw-steps::before {
+      content: ''; position: absolute; top: 30px; left: 12.5%; right: 12.5%; height: 2px;
+      background: repeating-linear-gradient(to right, rgba(0,212,255,0.4) 0, rgba(0,212,255,0.4) 8px, transparent 8px, transparent 16px);
+      z-index: 0;
+    }
+    .hiw-step { text-align: center; padding: 0 20px; position: relative; z-index: 1; }
+    .hiw-num {
+      width: 60px; height: 60px; border-radius: 50%; background: var(--accent); color: #000;
+      font-size: 22px; font-weight: 800; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px; box-shadow: 0 0 0 6px rgba(0,212,255,0.15);
+    }
+    .hiw-title { font-size: 16px; font-weight: 700; color: #111; margin-bottom: 10px; }
+    .hiw-desc { font-size: 13.5px; color: #555; line-height: 1.65; }
+
+    /* ─── PRICING ───────────────────────────────────────────── */
+    #pricing { padding: 96px 0; background: var(--bg); }
+    .pricing-header { text-align: center; margin-bottom: 56px; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .pricing-card {
+      background: var(--bg3); border: 1px solid var(--border); border-radius: 20px;
+      padding: 32px 28px; position: relative; display: flex; flex-direction: column;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .pricing-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-4px); }
+    .pricing-card.popular { border-color: var(--accent); box-shadow: 0 0 40px rgba(0,212,255,0.12); }
+    .popular-badge {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: var(--accent); color: #000; font-size: 10px; font-weight: 800;
+      letter-spacing: 1.5px; text-transform: uppercase; border-radius: 20px; padding: 4px 14px;
+      white-space: nowrap;
+    }
+    .pricing-tier { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+    .pricing-price { font-size: 40px; font-weight: 800; color: var(--white); letter-spacing: -1px; margin-bottom: 4px; }
+    .pricing-price sup { font-size: 20px; vertical-align: top; margin-top: 8px; }
+    .pricing-price-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+    .pricing-turn { font-size: 12px; color: var(--muted); margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .pricing-turn span { color: var(--text); font-weight: 600; }
+    .pricing-features { list-style: none; flex: 1; margin-bottom: 20px; }
+    .pricing-features li {
+      display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--muted);
+      padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .pricing-features li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .pricing-revisions { font-size: 12px; color: var(--accent); font-weight: 600; margin-bottom: 12px; }
+    .pricing-guarantee {
+      font-size: 11px; color: var(--accent); background: var(--accent-dim);
+      border: 1px solid var(--accent-glow); border-radius: 8px; padding: 8px 12px;
+      text-align: center; font-weight: 600;
+    }
+    .pricing-note {
+      font-size: 11px; color: var(--muted); text-align: center; margin-top: 8px;
+      font-style: italic;
+    }
+    .pricing-cta { text-align: center; margin-top: 48px; }
+
+    /* ─── FAQ ───────────────────────────────────────────────── */
+    #faq { padding: 96px 0; background: var(--light); }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start; }
+    .faq-left { position: sticky; top: 100px; }
+    .faq-left .section-title { color: #111; margin-bottom: 8px; }
+    .faq-left .section-title span { color: var(--accent); }
+    .faq-left .section-label { background: rgba(0,212,255,0.1); }
+    .faq-img { width: 100%; max-width: 340px; height: auto; border-radius: 16px; margin-top: 28px; }
+    .faq-items { display: flex; flex-direction: column; gap: 10px; }
+    .faq-item {
+      background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .faq-item.open { border-color: var(--accent); }
+    .faq-q {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 18px 22px; cursor: pointer; font-size: 14px; font-weight: 600; color: #111;
+      user-select: none;
+    }
+    .faq-q:hover { color: var(--accent); }
+    .faq-toggle { font-size: 20px; line-height: 1; color: var(--accent); flex-shrink: 0; transition: transform 0.25s; }
+    .faq-item.open .faq-toggle { transform: rotate(45deg); }
+    .faq-a { display: none; padding: 0 22px 18px; font-size: 14px; color: #444; line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ─── CTA ───────────────────────────────────────────────── */
+    #cta { padding: 120px 0; background: var(--bg2); border-top: 1px solid var(--border); }
+    .cta-inner { text-align: center; }
+    .cta-title { font-size: clamp(32px,5vw,52px); font-weight: 800; color: var(--white); margin-bottom: 16px; letter-spacing: -1px; }
+    .cta-title span { color: var(--accent); }
+    .cta-sub { font-size: 17px; color: var(--muted); max-width: 520px; margin: 0 auto 40px; line-height: 1.7; }
+
+    /* ─── FOOTER ────────────────────────────────────────────── */
+    #particles-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+    .site-footer { background: #0a0a0a; padding: 60px 5% 0; border-top: 1px solid rgba(0,212,255,0.1); }
+    .footer-main { display: flex; gap: 48px; justify-content: space-between; flex-wrap: wrap; }
+    .footer-col { flex: 1; min-width: 200px; display: flex; flex-direction: column; }
+    .footer-col-brand {
+      flex: 1.3;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+    .footer-col-title { font-family: 'Poppins', sans-serif; font-size: 11px; letter-spacing: 0.15em; color: #00D4FF; text-transform: uppercase; margin-bottom: 16px; font-weight: 600; }
+    .footer-tagline { font-family: 'Poppins', sans-serif; font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.7; margin-bottom: 20px; }
+    .footer-link { font-family: 'Poppins', sans-serif; font-size: 13px; color: rgba(255,255,255,0.45); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+    .footer-link:hover { color: #00D4FF; }
+    .footer-socials { display: flex; gap: 10px; flex-wrap: wrap; }
+    .footer-icon-wrap { position: relative; display: inline-flex; }
+    .footer-icon-a { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 15px; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+    .footer-icon-wrap:hover .footer-icon-a { border-color: #00D4FF; color: #00D4FF; }
+    .footer-tooltip { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: #ffffff; color: #0a0a0a; font-size: 11px; font-family: 'Poppins', sans-serif; font-weight: 500; padding: 4px 10px; border-radius: 5px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.18s ease; z-index: 10; }
+    .footer-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: #ffffff; }
+    .footer-icon-wrap:hover .footer-tooltip { opacity: 1; }
+    .footer-input { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 10px 14px; color: #fff; font-family: 'Poppins', sans-serif; font-size: 13px; margin-bottom: 10px; outline: none; transition: border-color 0.2s; }
+    .footer-input:focus { border-color: rgba(0,212,255,0.4); }
+    .footer-textarea { height: 80px; resize: none; }
+    .footer-wa-btn { background: #25D366; color: #fff; border: none; border-radius: 8px; padding: 11px 16px; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: background 0.2s; }
+    .footer-wa-btn:hover { background: #1ebe5d; }
+    .footer-divider { border: none; border-top: 0.5px solid rgba(0,212,255,0.12); margin: 48px 0 0; }
+    .footer-name-wrap { text-align: center; padding: 32px 5% 0; overflow: hidden; }
+    .footer-big-name { font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: clamp(38px, 8vw, 100px); white-space: nowrap; color: #f4f4f4; line-height: 1; display: inline-flex; align-items: flex-end; letter-spacing: 0.02em; }
+    .footer-cap { color: #00D4FF; font-size: 1.38em; line-height: 1; display: inline-block; vertical-align: bottom; transform: translateY(0.08em); }
+    .footer-rest { display: inline-block; vertical-align: bottom; line-height: 1; letter-spacing: 0.04em; }
+    .footer-word-gap { display: inline-block; width: 0.32em; vertical-align: bottom; }
+    .footer-copyright { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; font-family: 'Poppins', sans-serif; font-size: 12px; color: rgba(255,255,255,0.2); text-align: center; padding: 16px 5% 20px; margin-top: 12px; border-top: 0.5px solid rgba(255,255,255,0.05); }
+    .footer-legal-links { display: flex; align-items: center; gap: 8px; }
+    .footer-legal-link { color: rgba(255,255,255,0.3); text-decoration: none; font-size: 12px; font-family: 'Poppins', sans-serif; transition: color 0.2s; }
+    .footer-legal-link:hover { color: #00D4FF; }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .pricing-grid { grid-template-columns: 1fr 1fr; }
+      .whyme-grid { grid-template-columns: 1fr 1fr; }
+      .hiw-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .hiw-steps::before { display: none; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero-content { padding: 80px 0 60px; }
+      .hero-title { font-size: 36px; }
+      .guarantee-banner { flex-direction: column; text-align: center; padding: 28px 24px; }
+      .guarantee-left { flex-direction: column; text-align: center; }
+      .wib-grid { grid-template-columns: 1fr; }
+      .whyme-grid { grid-template-columns: 1fr; }
+      .whofor-grid { grid-template-columns: 1fr; }
+      .hiw-steps { grid-template-columns: 1fr 1fr; }
+      .pricing-grid { grid-template-columns: 1fr 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .faq-left { position: static; }
+      .faq-img { display: none; }
+    }
+    @media (max-width: 480px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .hiw-steps { grid-template-columns: 1fr; }
+      .hero-title { font-size: 30px; }
+      .site-footer { padding: 40px 5% 0; overflow-x: hidden; }
+      .footer-main { flex-direction: column; gap: 32px; }
+      .footer-col { min-width: 100%; }
+      .footer-big-name { font-size: clamp(28px, 10vw, 60px); white-space: nowrap; overflow: visible; }
+      .footer-name-wrap { padding: 24px 4% 0; overflow: visible; text-align: center; }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XFWG6H186P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XFWG6H186P');
+  </script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ NAVBAR ══════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/index.html" class="nav-logo"><img src="/rflogo.svg" alt="Rafe Faruq" style="display:block;"></a>
+    <ul class="nav-links">
+      <li><a href="/index.html" class="nav-link">Home</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="nav-link active">Services</a>
+        <div class="dropdown-menu">
+          <a href="/virtual-assistant.html"><span class="di">🤝</span> Virtual Assistant</a>
+          <a href="/lead-generation.html"><span class="di">🎯</span> Lead Generation</a>
+          <a href="/website-design.html" class="dropdown-active"><span class="di">💻</span> Website Design &amp; Dev</a>
+          <a href="/press-release.html"><span class="di">📰</span> Press Release &amp; Media</a>
+          <a href="/google-maps.html"><span class="di">📍</span> Google Maps Optimization</a>
+        </div>
+      </li>
+      <li><a href="/index.html#blog" class="nav-link">Blog</a></li>
+      <li>
+        <a data-cal-link="rafe-faruq/strategy-call" data-cal-namespace="strategy-call" data-cal-config='{"layout":"week_view","useSlotsViewOnSmallScreen":"true","theme":"auto"}' class="btn nav-links nav-cta" style="list-style:none;padding:8px 18px;">Work With Me</a>
+      </li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="/index.html" onclick="closeMobileNav()">Home</a>
+  <div class="mobile-services-wrap">
+    <div class="mobile-services-toggle" onclick="toggleMobileServices()">Services <span class="mobile-services-arrow" id="mobileServicesArrow">▼</span></div>
+    <div class="mobile-services-menu" id="mobileServicesMenu">
+      <a href="/virtual-assistant.html" onclick="closeMobileNav()">🤝 Virtual Assistant</a>
+      <a href="/lead-generation.html" onclick="closeMobileNav()">🎯 Lead Generation</a>
+      <a href="/website-design.html" onclick="closeMobileNav()" style="color:var(--accent)!important;">💻 Website Design &amp; Dev</a>
+      <a href="/press-release.html" onclick="closeMobileNav()">📰 Press Release &amp; Media</a>
+      <a href="/google-maps.html" onclick="closeMobileNav()">📍 Google Maps Optimization</a>
+    </div>
+  </div>
+  <a href="/index.html#blog" onclick="closeMobileNav()">Blog</a>
+  <a href="#cta" onclick="closeMobileNav()" style="color:var(--accent);margin-top:8px;">Work With Me →</a>
+</nav>
+
+<!-- ═══════════════════════════════════ HERO ════════════════════════════════════ -->
+<section id="hero">
+  <canvas id="hero-particles-canvas"></canvas>
+  <div class="container">
+    <div class="hero-content fade-left">
+      <div class="hero-label">My Services</div>
+      <h1 class="hero-title">
+        Websites That Convert<br>
+        <span class="line2">&amp; Impress</span>
+      </h1>
+      <p class="hero-sub">I design and build fast, clean, mobile-ready websites that make your business look professional and turn visitors into clients.</p>
+      <div class="hero-btns">
+        <a data-cal-link="rafe-faruq/strategy-call" data-cal-namespace="strategy-call" data-cal-config='{"layout":"week_view","useSlotsViewOnSmallScreen":"true","theme":"auto"}' class="btn btn-primary">Work With Me</a>
+        <a href="#pricing" class="btn btn-outline">See Pricing</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ GUARANTEE ═══════════════════════════════ -->
+<section id="guarantee">
+  <div class="container">
+    <div class="guarantee-banner fade-in">
+      <div class="guarantee-left">
+        <div class="guarantee-icon">✅</div>
+        <div class="guarantee-headline">100% <span>Satisfaction</span> Guarantee</div>
+      </div>
+      <p class="guarantee-text">For Landing Pages and Business Websites — you only pay when you love the result. Not happy? Walk away. No questions asked. Zero risk.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ WHAT I BUILD ════════════════════════════ -->
+<section id="what-i-build">
+  <div class="container">
+    <div class="wib-header fade-in">
+      <span class="section-label">What I Build</span>
+      <h2 class="section-title">Every Type of Web Presence <span>You Need</span></h2>
+    </div>
+    <div class="wib-grid">
+      <div class="wib-card fade-in" style="transition-delay:0.05s;">
+        <span class="wib-tag">From $299</span>
+        <div class="wib-icon">🎯</div>
+        <div class="wib-title">Landing Pages</div>
+        <p class="wib-desc">Single-page, high-converting designs built to capture leads, promote offers, or launch products. Fast to build, faster to convert.</p>
+      </div>
+      <div class="wib-card fade-in" style="transition-delay:0.1s;">
+        <span class="wib-tag">From $499</span>
+        <div class="wib-icon">🏢</div>
+        <div class="wib-title">Business Websites</div>
+        <p class="wib-desc">3–5 page professional websites for your brand — Home, About, Services, Contact, and more. Clean, credible, and client-ready.</p>
+      </div>
+      <div class="wib-card fade-in" style="transition-delay:0.15s;">
+        <span class="wib-tag">From $699</span>
+        <div class="wib-icon">🛒</div>
+        <div class="wib-title">E-commerce Stores</div>
+        <p class="wib-desc">Product pages, cart, checkout — fully functional online stores built to sell. Mobile-optimized and easy to manage.</p>
+      </div>
+      <div class="wib-card fade-in" style="transition-delay:0.2s;">
+        <span class="wib-tag">Custom Quote</span>
+        <div class="wib-icon">⚙️</div>
+        <div class="wib-title">Web Applications</div>
+        <p class="wib-desc">Custom web apps, billing systems, booking portals, admin dashboards, and SaaS MVPs. Complex problems, clean solutions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ WHY CHOOSE ME ═══════════════════════════ -->
+<section id="why-me">
+  <div class="container">
+    <div class="whyme-header fade-in">
+      <span class="section-label">Why Choose Me</span>
+      <h2 class="section-title">Not Just Another <span>Website Builder</span></h2>
+    </div>
+    <div class="whyme-grid">
+      <div class="whyme-item fade-in" style="transition-delay:0.05s;">
+        <div class="whyme-icon">🎨</div>
+        <div class="whyme-title">Custom Design</div>
+        <p class="whyme-desc">No templates. Every site is built from scratch for your brand.</p>
+      </div>
+      <div class="whyme-item fade-in" style="transition-delay:0.1s;">
+        <div class="whyme-icon">📱</div>
+        <div class="whyme-title">Mobile Responsive</div>
+        <p class="whyme-desc">Looks perfect on every screen size, every device.</p>
+      </div>
+      <div class="whyme-item fade-in" style="transition-delay:0.15s;">
+        <div class="whyme-icon">⚡</div>
+        <div class="whyme-title">Fast Loading</div>
+        <p class="whyme-desc">Optimized for speed so visitors don't bounce.</p>
+      </div>
+      <div class="whyme-item fade-in" style="transition-delay:0.2s;">
+        <div class="whyme-icon">🔍</div>
+        <div class="whyme-title">SEO-Friendly</div>
+        <p class="whyme-desc">Clean structure and proper markup from day one.</p>
+      </div>
+      <div class="whyme-item fade-in" style="transition-delay:0.25s;">
+        <div class="whyme-icon">🧹</div>
+        <div class="whyme-title">Clean Code</div>
+        <p class="whyme-desc">Maintainable, well-organized code you can hand off to anyone.</p>
+      </div>
+      <div class="whyme-item fade-in" style="transition-delay:0.3s;">
+        <div class="whyme-icon">🤝</div>
+        <div class="whyme-title">Ongoing Support</div>
+        <p class="whyme-desc">Need changes after launch? I'm here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ WHO THIS IS FOR ═════════════════════════ -->
+<section id="who-for">
+  <div class="container">
+    <div class="whofor-header fade-in">
+      <span class="section-label">Who I Work With</span>
+      <h2 class="section-title">Built For Anyone Who Needs <span>a Web Presence</span></h2>
+    </div>
+    <div class="whofor-grid">
+      <div class="whofor-item fade-in" style="transition-delay:0.05s;"><span class="whofor-check">✓</span><span class="whofor-label">Startup Founders &amp; CEOs</span></div>
+      <div class="whofor-item fade-in" style="transition-delay:0.08s;"><span class="whofor-check">✓</span><span class="whofor-label">Small Business Owners</span></div>
+      <div class="whofor-item fade-in" style="transition-delay:0.11s;"><span class="whofor-check">✓</span><span class="whofor-label">Freelancers &amp; Consultants</span></div>
+      <div class="whofor-item fade-in" style="transition-delay:0.14s;"><span class="whofor-check">✓</span><span class="whofor-label">Dental &amp; Healthcare Practices</span></div>
+      <div class="whofor-item fade-in" style="transition-delay:0.17s;"><span class="whofor-check">✓</span><span class="whofor-label">Real Estate Agents &amp; Brokers</span></div>
+      <div class="whofor-item fade-in" style="transition-delay:0.2s;"><span class="whofor-check">✓</span><span class="whofor-label">E-commerce Entrepreneurs</span></div>
+      <div class="whofor-item fade-in" style="transition-delay:0.23s;"><span class="whofor-check">✓</span><span class="whofor-label">Coaches &amp; Course Creators</span></div>
+      <div class="whofor-item fade-in" style="transition-delay:0.26s;"><span class="whofor-check">✓</span><span class="whofor-label">Local Service Businesses</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ PORTFOLIO ═══════════════════════════════ -->
+<section id="portfolio">
+  <div class="container">
+    <div class="port-header fade-in">
+      <span class="section-label">My Work</span>
+      <h2 class="section-title">Recent <span>Projects</span></h2>
+    </div>
+    <div class="port-stage fade-in" style="transition-delay:0.2s;">
+      <div class="port-slides" id="portSlides">
+        <div class="port-slide active" data-index="0">
+          <div class="port-preview" onclick="openLightbox(0)">
+            <div class="port-preview-text"><strong>Click to Preview</strong>Project Preview — Coming Soon</div>
+            <span class="port-click-hint">View Fullscreen ↗</span>
+          </div>
+          <div class="port-info">
+            <div class="port-info-title">Dental Practice Website</div>
+            <p class="port-info-desc">5-page website for a dental clinic — Home, Services, About, Blog, Contact.</p>
+          </div>
+        </div>
+        <div class="port-slide" data-index="1">
+          <div class="port-preview" onclick="openLightbox(1)">
+            <div class="port-preview-text"><strong>Click to Preview</strong>Project Preview — Coming Soon</div>
+            <span class="port-click-hint">View Fullscreen ↗</span>
+          </div>
+          <div class="port-info">
+            <div class="port-info-title">Real Estate Landing Page</div>
+            <p class="port-info-desc">High-converting single page for a property listing campaign.</p>
+          </div>
+        </div>
+        <div class="port-slide" data-index="2">
+          <div class="port-preview" onclick="openLightbox(2)">
+            <div class="port-preview-text"><strong>Click to Preview</strong>Project Preview — Coming Soon</div>
+            <span class="port-click-hint">View Fullscreen ↗</span>
+          </div>
+          <div class="port-info">
+            <div class="port-info-title">E-commerce Store</div>
+            <p class="port-info-desc">Full online store with product catalog, cart, and checkout.</p>
+          </div>
+        </div>
+        <div class="port-slide" data-index="3">
+          <div class="port-preview" onclick="openLightbox(3)">
+            <div class="port-preview-text"><strong>Click to Preview</strong>Project Preview — Coming Soon</div>
+            <span class="port-click-hint">View Fullscreen ↗</span>
+          </div>
+          <div class="port-info">
+            <div class="port-info-title">Healthcare Booking Portal</div>
+            <p class="port-info-desc">Custom web app for patient appointment booking and management.</p>
+          </div>
+        </div>
+        <div class="port-slide" data-index="4">
+          <div class="port-preview" onclick="openLightbox(4)">
+            <div class="port-preview-text"><strong>Click to Preview</strong>Project Preview — Coming Soon</div>
+            <span class="port-click-hint">View Fullscreen ↗</span>
+          </div>
+          <div class="port-info">
+            <div class="port-info-title">SaaS Dashboard</div>
+            <p class="port-info-desc">Admin dashboard for a B2B SaaS product — clean UI, fast performance.</p>
+          </div>
+        </div>
+      </div>
+      <div class="port-controls">
+        <button class="port-btn" id="portPrev">←</button>
+        <div class="port-dots" id="portDots"></div>
+        <button class="port-btn" id="portNext">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+  <div class="lightbox-inner" id="lightboxInner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <div class="lightbox-preview">
+      <div class="lightbox-preview-text" id="lightboxPreviewText"><strong>Project Preview</strong>Coming Soon</div>
+    </div>
+    <div class="lightbox-info">
+      <div class="lightbox-info-title" id="lightboxTitle"></div>
+      <p class="lightbox-info-desc" id="lightboxDesc"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ HOW IT WORKS ════════════════════════════ -->
+<section id="how-it-works">
+  <div class="container">
+    <div class="hiw-header fade-in">
+      <span class="section-label">The Process</span>
+      <h2 class="section-title">From Idea to <span style="color:var(--accent);">Live Website</span></h2>
+    </div>
+    <div class="hiw-steps">
+      <div class="hiw-step fade-in" style="transition-delay:0.05s;">
+        <div class="hiw-num">1</div>
+        <div class="hiw-title">Discovery Call</div>
+        <p class="hiw-desc">We discuss your goals, target audience, and design preferences.</p>
+      </div>
+      <div class="hiw-step fade-in" style="transition-delay:0.15s;">
+        <div class="hiw-num">2</div>
+        <div class="hiw-title">Design &amp; Build</div>
+        <p class="hiw-desc">I design and develop your site, keeping you updated throughout.</p>
+      </div>
+      <div class="hiw-step fade-in" style="transition-delay:0.25s;">
+        <div class="hiw-num">3</div>
+        <div class="hiw-title">Review &amp; Revise</div>
+        <p class="hiw-desc">You review the work. We refine until you love it.</p>
+      </div>
+      <div class="hiw-step fade-in" style="transition-delay:0.35s;">
+        <div class="hiw-num">4</div>
+        <div class="hiw-title">Launch</div>
+        <p class="hiw-desc">Once approved, we go live. I handle deployment and final checks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ PRICING ═════════════════════════════════ -->
+<section id="pricing">
+  <div class="container">
+    <div class="pricing-header fade-in">
+      <span class="section-label">Investment</span>
+      <h2 class="section-title">Clear, <span>Honest Pricing</span></h2>
+    </div>
+    <div class="pricing-grid">
+      <!-- Card 1 -->
+      <div class="pricing-card fade-in" style="transition-delay:0.05s;">
+        <div class="pricing-tier">Landing Page</div>
+        <div class="pricing-price"><sup>$</sup>299</div>
+        <div class="pricing-turn">Turnaround: <span>3–5 days</span></div>
+        <div class="pricing-revisions">2 rounds of revisions</div>
+        <ul class="pricing-features">
+          <li>Single page design</li>
+          <li>Mobile responsive</li>
+          <li>Contact form</li>
+          <li>Basic SEO setup</li>
+          <li>Fast delivery</li>
+        </ul>
+        <div class="pricing-guarantee">Pay after you're satisfied ✅</div>
+      </div>
+      <!-- Card 2 — Most Popular -->
+      <div class="pricing-card popular fade-in" style="transition-delay:0.1s;">
+        <span class="popular-badge">Most Popular</span>
+        <div class="pricing-tier">Business Website</div>
+        <div class="pricing-price"><sup>$</sup>499</div>
+        <div class="pricing-turn">Turnaround: <span>7–10 days</span></div>
+        <div class="pricing-revisions">3 rounds of revisions</div>
+        <ul class="pricing-features">
+          <li>Up to 5 pages</li>
+          <li>Mobile responsive</li>
+          <li>Contact form</li>
+          <li>Basic SEO</li>
+          <li>Social links</li>
+          <li>Fast delivery</li>
+        </ul>
+        <div class="pricing-guarantee">Pay after you're satisfied ✅</div>
+      </div>
+      <!-- Card 3 -->
+      <div class="pricing-card fade-in" style="transition-delay:0.15s;">
+        <div class="pricing-tier">E-commerce</div>
+        <div class="pricing-price"><sup>$</sup>699</div>
+        <div class="pricing-turn">Turnaround: <span>7–10 days</span></div>
+        <div class="pricing-revisions">3 rounds of revisions</div>
+        <ul class="pricing-features">
+          <li>Product catalog</li>
+          <li>Cart &amp; checkout</li>
+          <li>Mobile responsive</li>
+          <li>Payment integration</li>
+          <li>Basic SEO</li>
+        </ul>
+        <p class="pricing-note">50% upfront, 50% on delivery</p>
+      </div>
+      <!-- Card 4 -->
+      <div class="pricing-card fade-in" style="transition-delay:0.2s;">
+        <div class="pricing-tier">Web Application</div>
+        <div class="pricing-price" style="font-size:28px;letter-spacing:-0.5px;">Custom<br>Quote</div>
+        <div class="pricing-turn">Turnaround: <span>Project-based</span></div>
+        <div class="pricing-revisions">Defined in scope</div>
+        <ul class="pricing-features">
+          <li>Custom functionality</li>
+          <li>Admin dashboard</li>
+          <li>API integrations</li>
+          <li>Ongoing support available</li>
+        </ul>
+        <p class="pricing-note">50% upfront, 50% on delivery</p>
+      </div>
+    </div>
+    <div class="pricing-cta fade-in" style="transition-delay:0.3s;">
+      <a data-cal-link="rafe-faruq/strategy-call" data-cal-namespace="strategy-call" data-cal-config='{"layout":"week_view","useSlotsViewOnSmallScreen":"true","theme":"auto"}' class="btn btn-primary" style="font-size:15px;padding:15px 36px;">Discuss Your Project — Schedule a Free Call</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ FAQ ═════════════════════════════════════ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-grid">
+      <div class="faq-left fade-left">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Have questions?<br><span>I have answers!</span></h2>
+        <img src="/faq.png" alt="FAQ" class="faq-img">
+      </div>
+      <div class="faq-items fade-right">
+        <div class="faq-item open">
+          <div class="faq-q">What do I need to provide to get started? <span class="faq-toggle">+</span></div>
+          <div class="faq-a">Just tell me your goals, the pages you need, and share any brand assets (logo, colors, fonts). I'll handle the rest.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Do you use templates or build from scratch? <span class="faq-toggle">+</span></div>
+          <div class="faq-a">Everything is built from scratch — custom designed for your brand. No generic templates.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What if I don't like the design? <span class="faq-toggle">+</span></div>
+          <div class="faq-a">For Landing Pages and Business Websites, you only pay if you're happy with the result. If it's not right, you walk away — no charge, no questions.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Will my website work on mobile? <span class="faq-toggle">+</span></div>
+          <div class="faq-a">Yes — every site I build is fully responsive and tested across devices and screen sizes.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Do you provide hosting? <span class="faq-toggle">+</span></div>
+          <div class="faq-a">I can guide you to the right hosting solution and handle the deployment. Hosting cost is separate and depends on your provider.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How do payments work for E-commerce and Web Apps? <span class="faq-toggle">+</span></div>
+          <div class="faq-a">50% upfront to begin, 50% upon project completion. Payment via ACH bank transfer or Payoneer.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can you redesign my existing website? <span class="faq-toggle">+</span></div>
+          <div class="faq-a">Yes — send me your current site and tell me what you want improved. I'll give you a custom quote based on the scope.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ CTA ═════════════════════════════════════ -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-inner fade-in">
+      <span class="section-label">Let's Connect</span>
+      <h2 class="cta-title">Ready to Build <span>Something Great?</span></h2>
+      <p class="cta-sub">Let's talk about your project. Free 30-min call, no pressure, no commitment.</p>
+      <a data-cal-link="rafe-faruq/strategy-call" data-cal-namespace="strategy-call" data-cal-config='{"layout":"week_view","useSlotsViewOnSmallScreen":"true","theme":"auto"}' class="btn btn-primary" style="font-size:15px;padding:15px 32px;">Schedule a Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ FOOTER ══════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-main">
+
+    <!-- Column 1: Logo + tagline + social icons -->
+    <div class="footer-col footer-col-brand">
+      <img src="/rflogo.svg" alt="Rafe Faruq" style="height:64px; width:auto; display:block; margin-bottom:16px; max-width:200px;">
+      <p class="footer-tagline">Your dedicated VA &amp; Digital Ops partner.<br>Helping founders and CEOs reclaim their time.</p>
+      <div class="footer-socials">
+        <div class="footer-icon-wrap">
+          <a href="https://linkedin.com/in/rafefaruq" target="_blank" class="footer-icon-a" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <span class="footer-tooltip">LinkedIn</span>
+        </div>
+        <div class="footer-icon-wrap">
+          <a href="https://facebook.com/rafefaruq" target="_blank" class="footer-icon-a" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <span class="footer-tooltip">Facebook</span>
+        </div>
+        <div class="footer-icon-wrap">
+          <a href="https://instagram.com/rafefaruq" target="_blank" class="footer-icon-a" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <span class="footer-tooltip">Instagram</span>
+        </div>
+        <div class="footer-icon-wrap">
+          <a href="https://x.com/rafefaruq" target="_blank" class="footer-icon-a" aria-label="X Twitter"><i class="fab fa-x-twitter"></i></a>
+          <span class="footer-tooltip">X (Twitter)</span>
+        </div>
+        <div class="footer-icon-wrap">
+          <a href="https://wa.me/16468203721" target="_blank" class="footer-icon-a" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <span class="footer-tooltip">WhatsApp</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Column 2: Services links -->
+    <div class="footer-col">
+      <h4 class="footer-col-title">Services</h4>
+      <a href="/virtual-assistant.html" class="footer-link">Virtual Assistant</a>
+      <a href="/lead-generation.html" class="footer-link">Lead Generation</a>
+      <a href="/website-design.html" class="footer-link">Website Design &amp; Dev</a>
+      <a href="/press-release.html" class="footer-link">Press Release &amp; Media</a>
+      <a href="/google-maps.html" class="footer-link">Google Maps Optimization</a>
+    </div>
+
+    <!-- Column 3: WhatsApp quick message -->
+    <div class="footer-col">
+      <h4 class="footer-col-title">Quick Message</h4>
+      <input type="text" class="footer-input" id="footer-name" placeholder="Your name">
+      <textarea class="footer-input footer-textarea" id="footer-msg" placeholder="Your message..."></textarea>
+      <button class="footer-wa-btn" onclick="var name=document.getElementById('footer-name').value;var msg=document.getElementById('footer-msg').value;window.open('https://wa.me/16468203721?text='+encodeURIComponent('Hi Rafe, I am '+name+'. '+msg),'_blank');">
+        <i class="fab fa-whatsapp"></i> Send on WhatsApp
+      </button>
+    </div>
+
+  </div>
+
+  <div class="footer-divider"></div>
+  <div class="footer-name-wrap">
+    <div class="footer-big-name">
+      <span class="footer-cap" style="margin-right:0.08em;">R</span><span class="footer-rest">AFE</span>
+      <span class="footer-word-gap"></span>
+      <span class="footer-cap" style="margin-right:0.08em;">F</span><span class="footer-rest">ARUQ</span>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <span>© 2025 Rafe Faruq. All rights reserved.</span>
+    <span class="footer-legal-links">
+      <a href="#" onclick="openPopup('privacy')" class="footer-legal-link">Privacy Policy</a>
+      <span style="color:rgba(255,255,255,0.2);">·</span>
+      <a href="#" onclick="openPopup('tos')" class="footer-legal-link">Terms of Service</a>
+    </span>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════ SCRIPTS ══════════════════════════════════ -->
+<script>
+// ── NAVBAR ────────────────────────────────────────────────────
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ── HAMBURGER ────────────────────────────────────────────────
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+hamburger.addEventListener('click', () => mobileNav.classList.toggle('open'));
+function closeMobileNav() {
+  mobileNav.classList.remove('open');
+  const menu = document.getElementById('mobileServicesMenu');
+  const arrow = document.getElementById('mobileServicesArrow');
+  if (menu) menu.classList.remove('open');
+  if (arrow) arrow.classList.remove('open');
+}
+
+function toggleMobileServices() {
+  const menu = document.getElementById('mobileServicesMenu');
+  const arrow = document.getElementById('mobileServicesArrow');
+  menu.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+// ── SCROLL ANIMATIONS ─────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-in, .fade-left, .fade-right').forEach(el => observer.observe(el));
+
+// ── PORTFOLIO SLIDESHOW ───────────────────────────────────────
+const portData = [
+  { title: 'Dental Practice Website',    desc: '5-page website for a dental clinic — Home, Services, About, Blog, Contact.' },
+  { title: 'Real Estate Landing Page',   desc: 'High-converting single page for a property listing campaign.' },
+  { title: 'E-commerce Store',           desc: 'Full online store with product catalog, cart, and checkout.' },
+  { title: 'Healthcare Booking Portal',  desc: 'Custom web app for patient appointment booking and management.' },
+  { title: 'SaaS Dashboard',             desc: 'Admin dashboard for a B2B SaaS product — clean UI, fast performance.' },
+];
+const portSlides = document.querySelectorAll('.port-slide');
+const portDotsEl = document.getElementById('portDots');
+let portIndex = 0;
+let portTimer;
+
+portData.forEach((_, i) => {
+  const d = document.createElement('div');
+  d.className = 'port-dot' + (i === 0 ? ' active' : '');
+  d.addEventListener('click', () => { goToSlide(i); resetPortTimer(); });
+  portDotsEl.appendChild(d);
+});
+
+function goToSlide(n) {
+  portSlides[portIndex].classList.remove('active');
+  portIndex = (n + portSlides.length) % portSlides.length;
+  portSlides[portIndex].classList.add('active');
+  document.querySelectorAll('.port-dot').forEach((d, i) => d.classList.toggle('active', i === portIndex));
+}
+
+function resetPortTimer() {
+  clearInterval(portTimer);
+  portTimer = setInterval(() => goToSlide(portIndex + 1), 10000);
+}
+
+document.getElementById('portPrev').addEventListener('click', () => { goToSlide(portIndex - 1); resetPortTimer(); });
+document.getElementById('portNext').addEventListener('click', () => { goToSlide(portIndex + 1); resetPortTimer(); });
+resetPortTimer();
+
+// ── LIGHTBOX ──────────────────────────────────────────────────
+const lightbox = document.getElementById('lightbox');
+
+function openLightbox(idx) {
+  document.getElementById('lightboxTitle').textContent = portData[idx].title;
+  document.getElementById('lightboxDesc').textContent = portData[idx].desc;
+  document.getElementById('lightboxPreviewText').innerHTML = '<strong>Project Preview</strong>Coming Soon';
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeLightboxOutside(e) {
+  if (e.target === lightbox) closeLightbox();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// ── FAQ ACCORDION ─────────────────────────────────────────────
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// ── WHATSAPP FORM ─────────────────────────────────────────────
+// Footer WhatsApp handled via inline onclick on footer-wa-btn
+
+// ── HERO PARTICLES ────────────────────────────────────────────
+(function () {
+  const canvas = document.getElementById('hero-particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles;
+
+  function rand(min, max) { return Math.random() * (max - min) + min; }
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+
+  function createParticles() {
+    particles = [];
+    const total = 120;
+    for (let i = 0; i < total; i++) {
+      const roll = Math.random();
+      let size, speed, glow;
+      if (roll < 0.80) { size = rand(0.5, 1.5); speed = rand(0.05, 0.3); glow = false; }
+      else if (roll < 0.95) { size = rand(2, 4); speed = rand(0.1, 0.3); glow = false; }
+      else { size = rand(5, 9); speed = rand(0.2, 0.5); glow = true; }
+      const angle = rand(0, Math.PI * 2);
+      particles.push({ x: rand(0, W), y: rand(0, H), r: size, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, opacity: rand(0.1, 0.6), glow, pulseOffset: rand(0, Math.PI * 2) });
+    }
+  }
+
+  function draw(ts) {
+    ctx.clearRect(0, 0, W, H);
+    const t = ts / 1000;
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < -p.r) p.x = W + p.r; else if (p.x > W + p.r) p.x = -p.r;
+      if (p.y < -p.r) p.y = H + p.r; else if (p.y > H + p.r) p.y = -p.r;
+      ctx.save();
+      if (p.glow) { const pulse = 0.5 + 0.5 * Math.sin(t * 1.8 + p.pulseOffset); ctx.shadowBlur = 15 * pulse; ctx.shadowColor = '#00D4FF'; }
+      else { ctx.shadowBlur = 0; }
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0,212,255,${p.opacity})`; ctx.fill(); ctx.restore();
+    });
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { resize(); createParticles(); });
+  resize(); createParticles(); requestAnimationFrame(draw);
+})();
+
+// ── FOOTER PARTICLES ──────────────────────────────────────────
+(function () {
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles;
+
+  function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+
+  function createParticles() {
+    particles = [];
+    const count = Math.floor((W * H) / 8000);
+    for (let i = 0; i < count; i++) {
+      particles.push({ x: Math.random() * W, y: Math.random() * H, z: Math.random(), r: Math.random() * 1.5 + 0.3, speed: Math.random() * 0.4 + 0.1, opacity: Math.random() * 0.6 + 0.2 });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => {
+      p.z -= p.speed * 0.003;
+      if (p.z <= 0) { p.z = 1; p.x = Math.random() * W; p.y = Math.random() * H; }
+      const scale = 1 - p.z;
+      const px = (p.x - W / 2) * scale + W / 2;
+      const py = (p.y - H / 2) * scale + H / 2;
+      const r = p.r * scale * 2;
+      const alpha = p.opacity * (1 - p.z);
+      ctx.beginPath(); ctx.arc(px, py, Math.max(0.1, r), 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0, 212, 255, ${alpha})`; ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { resize(); createParticles(); });
+  resize(); createParticles(); draw();
+})();
+</script>
+<style>
+#legal-popup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px; }
+#legal-popup-box { background: #111; border: 0.5px solid rgba(0,212,255,0.2); border-radius: 14px; width: 100%; max-width: 720px; max-height: 85vh; display: flex; flex-direction: column; overflow: hidden; }
+#legal-popup-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 28px; border-bottom: 0.5px solid rgba(255,255,255,0.07); }
+#legal-popup-title { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; color: #fff; margin: 0; }
+#legal-popup-close { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.5); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+#legal-popup-close:hover { border-color: #00D4FF; color: #00D4FF; }
+#legal-popup-body { padding: 24px 28px; overflow-y: auto; font-family: 'Poppins', sans-serif; font-size: 13px; line-height: 1.8; color: rgba(255,255,255,0.55); }
+#legal-popup-body h3 { color: #00D4FF; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin: 20px 0 8px; }
+#legal-popup-body p { margin: 0 0 12px; }
+#legal-popup-body a { color: #00D4FF; }
+</style>
+<div id="legal-popup-overlay" style="display:none;" onclick="if(event.target===this)closeLegalPopup()">
+  <div id="legal-popup-box">
+    <div id="legal-popup-header">
+      <h2 id="legal-popup-title"></h2>
+      <button onclick="closeLegalPopup()" id="legal-popup-close">&#x2715;</button>
+    </div>
+    <div id="legal-popup-body"></div>
+  </div>
+</div>
+<script>
+const legalContent = {
+  privacy: {
+    title: "Privacy Policy",
+    body: `<p>Last updated: June 2025. This Privacy Policy explains how Rafe Faruq (legal name: Md Omar Faruq) collects and uses your information.</p><h3>Information We Collect</h3><p>We collect information you provide directly: your name, email address, phone number, and message when you use our contact forms or book a call.</p><h3>How We Use Your Information</h3><p>Your information is used solely to respond to your inquiries and deliver agreed services. We do not sell or share your data with third parties.</p><h3>Third-Party Tools</h3><p>We use the following tools which may process your data: FormSubmit.co (form delivery), Cal.com (appointment booking), WhatsApp Business (messaging). Each has their own privacy policy.</p><h3>Cookies</h3><p>This website uses minimal cookies for functionality only. No tracking or advertising cookies are used.</p><h3>Data Retention</h3><p>We retain your contact information only as long as necessary to fulfill the service or respond to your inquiry.</p><h3>Your Rights</h3><p>You may request deletion of your data at any time by emailing <a href="mailto:rafefaruq@gmail.com">rafefaruq@gmail.com</a>.</p><h3>Contact</h3><p>Rafe Faruq &middot; rafefaruq@gmail.com &middot; WhatsApp: +1 (646) 820-3721</p>`
+  },
+  tos: {
+    title: "Terms of Service",
+    body: `<p>Last updated: June 2025. These Terms govern all services provided by Md Omar Faruq, operating as Rafe Faruq, a freelance digital operations professional based in Bangladesh.</p><h3>Services</h3><p>Services include Virtual Assistant, Lead Generation, Website Design &amp; Development, Press Release &amp; Media, and Google Maps Optimization, as described on this website.</p><h3>Payment Terms</h3><p>Payment is due as specified per service package. Accepted methods: Payoneer and ACH bank transfer (US clients).</p><p><strong style="color:#fff;">ACH Payment Details (US Clients):</strong><br>Bank: First Century Bank<br>Bank Address: 1731 N Elm St, Commerce, GA 30529, USA<br>Routing (ABA): 061120084<br>Account Type: Checking<br>Beneficiary Name: Md Omar Faruq<br><em style="color:rgba(255,255,255,0.35);">Full account number provided on invoice.</em></p><h3>No Refund Policy</h3><p>All payments are non-refundable. Once work has commenced, no refunds will be issued under any circumstances. By making payment, the client acknowledges and agrees to this policy. This applies to all service packages without exception.</p><h3>Revisions</h3><p>Revisions are limited to the number specified per package. Additional revisions beyond the included limit will be billed separately.</p><h3>Client Responsibilities</h3><p>The client is responsible for providing accurate information, timely feedback, and necessary access required to complete the work. Delays caused by the client do not entitle the client to a refund.</p><h3>Delivery Timeline</h3><p>Timelines are estimates and may vary based on project complexity and client responsiveness. Rafe Faruq is not liable for delays caused by third-party platforms or client delays.</p><h3>Intellectual Property</h3><p>Upon full payment, the client owns the final deliverables. Rafe Faruq retains the right to display work in portfolio unless otherwise agreed in writing.</p><h3>Governing Law</h3><p>These terms are governed by the laws of Bangladesh. Any disputes shall be resolved through mutual agreement first, then arbitration if necessary.</p><h3>Contact</h3><p>Rafe Faruq &middot; rafefaruq@gmail.com &middot; WhatsApp: +1 (646) 820-3721</p>`
+  }
+};
+function openPopup(type) {
+  var content = legalContent[type];
+  document.getElementById('legal-popup-title').textContent = content.title;
+  document.getElementById('legal-popup-body').innerHTML = content.body;
+  document.getElementById('legal-popup-overlay').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeLegalPopup() {
+  document.getElementById('legal-popup-overlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLegalPopup(); });
+</script>
+</body>
+</html>

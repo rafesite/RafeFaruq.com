@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex">
+  <title>Terms of Service — Rafe Faruq</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #0d0d0d;
+      --bg3: #111111;
+      --accent: #00D4FF;
+      --accent-dim: rgba(0,212,255,0.15);
+      --accent-glow: rgba(0,212,255,0.3);
+      --light: #F4F4F4;
+      --text: #e8e8e8;
+      --muted: #888;
+      --white: #ffffff;
+      --border: rgba(255,255,255,0.08);
+      --radius: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    ::selection { background: var(--accent); color: #000; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ─── NAVBAR ────────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0 24px;
+      transition: all 0.3s ease;
+      background: rgba(10, 10, 10, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+    }
+    #navbar.scrolled {
+      background: rgba(10, 10, 10, 0.88);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.25);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .nav-logo { text-decoration: none; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+    .nav-links .nav-cta {
+      background: transparent;
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      padding: 8px 18px;
+      border-radius: 7px;
+      font-weight: 600;
+      margin-left: 8px;
+      transition: all 0.3s;
+    }
+    .nav-links .nav-cta:hover { background: var(--accent); color: #000; }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a::after { content: ' ▾'; font-size: 10px; opacity: 0.6; }
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(17,17,17,0.97);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 8px;
+      min-width: 230px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .nav-dropdown:hover .dropdown-menu { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+    .dropdown-menu a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .dropdown-menu a:hover { background: var(--accent-dim); color: var(--accent); }
+    .dropdown-menu a .di { font-size: 16px; }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 5px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 72px; left: 0; right: 0; bottom: 0;
+      background: rgba(10,10,10,0.97);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      padding: 32px 24px;
+      flex-direction: column;
+      gap: 8px;
+      overflow-y: auto;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-nav a:hover { color: var(--accent); }
+    .mobile-services-wrap { border-bottom: 1px solid var(--border); }
+    .mobile-services-toggle { font-size: 18px; font-weight: 600; color: var(--text); padding: 14px 0; cursor: pointer; display: flex; align-items: center; justify-content: space-between; }
+    .mobile-services-toggle:hover { color: var(--accent); }
+    .mobile-services-arrow { font-size: 11px; transition: transform 0.25s; display: inline-block; }
+    .mobile-services-arrow.open { transform: rotate(180deg); }
+    .mobile-services-menu { display: none; padding: 4px 0 4px 16px; flex-direction: column; }
+    .mobile-services-menu.open { display: flex; }
+    .mobile-services-menu a { font-size: 15px !important; font-weight: 500 !important; padding: 9px 0 !important; border-bottom: 1px solid rgba(255,255,255,0.04) !important; color: var(--muted) !important; }
+    .mobile-services-menu a:hover { color: var(--accent) !important; }
+
+    /* ─── PAGE HERO ─────────────────────────────────────── */
+    .page-hero {
+      padding: 140px 24px 60px;
+      text-align: center;
+      background: var(--bg);
+      position: relative;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse at center top, rgba(0,212,255,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-glow);
+      border-radius: 20px;
+      padding: 5px 14px;
+      margin-bottom: 20px;
+    }
+    .page-hero-title {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .page-hero-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,0.45);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ─── CONTENT ───────────────────────────────────────── */
+    .legal-content {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+    .legal-content h2 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 36px 0 10px;
+    }
+    .legal-content h2:first-child { margin-top: 0; }
+    .legal-content p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.85;
+      margin-bottom: 14px;
+    }
+    .legal-content a { color: var(--accent); }
+    .legal-content a:hover { text-decoration: underline; }
+    .ach-box {
+      background: rgba(255,255,255,0.03);
+      border: 0.5px solid rgba(0,212,255,0.15);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 16px 0 20px;
+    }
+    .ach-box p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 6px;
+    }
+    .ach-box p:last-child { margin-bottom: 0; }
+    .ach-box strong { color: rgba(255,255,255,0.85); }
+    .ach-box em { color: rgba(255,255,255,0.35); font-style: italic; }
+
+    /* ─── FOOTER ────────────────────────────────────────── */
+    .site-footer {
+      background: #0a0a0a;
+      padding: 60px 5% 0;
+      border-top: 1px solid rgba(0,212,255,0.1);
+    }
+    .footer-main {
+      display: flex;
+      gap: 48px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .footer-col {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      flex-direction: column;
+    }
+    .footer-col-brand { flex: 1.3; }
+    .footer-col-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: #00D4FF;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    .footer-tagline {
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .footer-link {
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: #00D4FF; }
+    .footer-socials { display: flex; gap: 10px; flex-wrap: wrap; }
+    .footer-icon-wrap { position: relative; display: inline-flex; }
+    .footer-icon-a {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.25);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-size: 15px;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .footer-icon-wrap:hover .footer-icon-a { border-color: #00D4FF; color: #00D4FF; }
+    .footer-tooltip {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ffffff;
+      color: #0a0a0a;
+      font-size: 11px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 5px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease;
+      z-index: 10;
+    }
+    .footer-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%; left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: #ffffff;
+    }
+    .footer-icon-wrap:hover .footer-tooltip { opacity: 1; }
+    .footer-input {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      margin-bottom: 10px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .footer-input:focus { border-color: rgba(0,212,255,0.4); }
+    .footer-textarea { height: 80px; resize: none; }
+    .footer-wa-btn {
+      background: #25D366;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 11px 16px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+    .footer-wa-btn:hover { background: #1ebe5d; }
+    .footer-divider {
+      border: none;
+      border-top: 0.5px solid rgba(0,212,255,0.12);
+      margin: 48px 0 0;
+    }
+    .footer-name-wrap {
+      text-align: center;
+      padding: 32px 5% 0;
+      overflow: hidden;
+    }
+    .footer-big-name {
+      font-family: 'Libre Baskerville', serif;
+      font-weight: 700;
+      font-size: clamp(38px, 8vw, 100px);
+      white-space: nowrap;
+      color: #f4f4f4;
+      line-height: 1;
+      display: inline-flex;
+      align-items: flex-end;
+      letter-spacing: 0.02em;
+    }
+    .footer-cap {
+      color: #00D4FF;
+      font-size: 1.38em;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: bottom;
+      transform: translateY(0.08em);
+    }
+    .footer-rest {
+      display: inline-block;
+      vertical-align: bottom;
+      line-height: 1;
+      letter-spacing: 0.04em;
+    }
+    .footer-word-gap { display: inline-block; width: 0.32em; vertical-align: bottom; }
+    .footer-copyright {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.2);
+      text-align: center;
+      padding: 16px 5% 20px;
+      margin-top: 12px;
+      border-top: 0.5px solid rgba(255,255,255,0.05);
+    }
+    .footer-legal-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer-legal-link {
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      font-size: 12px;
+      font-family: 'Poppins', sans-serif;
+      transition: color 0.2s;
+    }
+    .footer-legal-link:hover { color: #00D4FF; }
+
+    /* ─── RESPONSIVE ────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .site-footer { padding: 40px 5% 0; overflow-x: hidden; }
+      .footer-main { flex-direction: column; gap: 32px; }
+      .footer-col { min-width: 100%; }
+      .footer-big-name { font-size: clamp(28px, 10vw, 60px); white-space: nowrap; overflow: visible; }
+      .footer-name-wrap { padding: 24px 4% 0; overflow: visible; text-align: center; }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XFWG6H186P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XFWG6H186P');
+  </script>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="rflogo.svg" alt="Rafe Faruq" style="height:68px;width:auto;display:block;"></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="index.html#about" class="nav-link">About</a></li>
+      <li class="nav-dropdown">
+        <a href="index.html#services" class="nav-link">Services</a>
+        <div class="dropdown-menu">
+          <a href="virtual-assistant.html"><span class="di">🤝</span> Virtual Assistant</a>
+          <a href="lead-generation.html"><span class="di">🎯</span> Lead Generation</a>
+          <a href="website-design.html"><span class="di">💻</span> Website Design &amp; Dev</a>
+          <a href="press-release.html"><span class="di">📰</span> Press Release &amp; Media</a>
+          <a href="google-maps.html"><span class="di">📍</span> Google Maps Optimization</a>
+        </div>
+      </li>
+      <li><a href="index.html#blog" class="nav-link">Blog</a></li>
+      <li><a href="index.html#cta" class="nav-link">Contact</a></li>
+      <li><a href="index.html#cta" class="nav-link nav-cta">Work With Me</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html" onclick="closeMobileNav()">Home</a>
+  <a href="index.html#about" onclick="closeMobileNav()">About</a>
+  <div class="mobile-services-wrap">
+    <div class="mobile-services-toggle" onclick="toggleMobileServices()">Services <span class="mobile-services-arrow" id="mobileServicesArrow">▼</span></div>
+    <div class="mobile-services-menu" id="mobileServicesMenu">
+      <a href="virtual-assistant.html" onclick="closeMobileNav()">🤝 Virtual Assistant</a>
+      <a href="lead-generation.html" onclick="closeMobileNav()">🎯 Lead Generation</a>
+      <a href="website-design.html" onclick="closeMobileNav()">💻 Website Design &amp; Dev</a>
+      <a href="press-release.html" onclick="closeMobileNav()">📰 Press Release &amp; Media</a>
+      <a href="google-maps.html" onclick="closeMobileNav()">📍 Google Maps Optimization</a>
+    </div>
+  </div>
+  <a href="index.html#blog" onclick="closeMobileNav()">Blog</a>
+  <a href="index.html#cta" onclick="closeMobileNav()">Contact</a>
+  <a href="index.html#cta" onclick="closeMobileNav()" style="color:var(--accent);margin-top:8px;">Work With Me →</a>
+</nav>
+
+<!-- ═══════════════════════════════ PAGE HERO ════════════════════════════════ -->
+<section class="page-hero">
+  <div class="page-hero-label">Legal</div>
+  <h1 class="page-hero-title">Terms of Service</h1>
+  <p class="page-hero-sub">Last updated: June 2025</p>
+</section>
+
+<!-- ═══════════════════════════════ CONTENT ══════════════════════════════════ -->
+<main class="legal-content">
+  <p>These Terms of Service govern all services provided by Md Omar Faruq, operating as Rafe Faruq, a freelance digital operations professional based in Bangladesh. By engaging with any service on this website, you agree to these terms in full.</p>
+
+  <h2>Services</h2>
+  <p>Services offered include Virtual Assistant, Lead Generation, Website Design &amp; Development, Press Release &amp; Media, and Google Maps Optimization, as described on the service pages of this website.</p>
+
+  <h2>Payment Terms</h2>
+  <p>Payment is due as specified per service package prior to work commencing. Accepted payment methods are Payoneer and ACH bank transfer (US clients only).</p>
+  <div class="ach-box">
+    <p><strong>ACH Payment Details (US Clients)</strong></p>
+    <p>Bank: First Century Bank</p>
+    <p>Bank Address: 1731 N Elm St, Commerce, GA 30529, USA</p>
+    <p>Routing (ABA): 061120084</p>
+    <p>Account Type: Checking</p>
+    <p>Beneficiary Name: Md Omar Faruq</p>
+    <p><em>Full account number is provided on invoice.</em></p>
+  </div>
+
+  <h2>No Refund Policy</h2>
+  <p>All payments are strictly non-refundable. Once work has commenced, no refunds will be issued under any circumstances. By making payment, the client acknowledges and agrees to this policy without exception. This applies to all service packages, partial deliveries, and milestone-based work.</p>
+
+  <h2>Revisions</h2>
+  <p>Each service package includes a specified number of revision rounds. Additional revisions beyond the included limit will be scoped and billed separately at the prevailing rate.</p>
+
+  <h2>Client Responsibilities</h2>
+  <p>The client is responsible for providing accurate information, timely feedback, and all necessary access or credentials required to complete the work. Delays caused by the client's failure to respond or provide required materials do not entitle the client to a refund or extended delivery window at no additional cost.</p>
+
+  <h2>Delivery Timeline</h2>
+  <p>All timelines communicated are estimates and may vary based on project complexity and client responsiveness. Rafe Faruq is not liable for delays caused by third-party platforms, tools, or client-side delays. Rush delivery may be available for an additional fee.</p>
+
+  <h2>Intellectual Property</h2>
+  <p>Upon receipt of full payment, the client owns all final deliverables produced for their project. Rafe Faruq retains the right to display completed work in a portfolio or case study context unless otherwise agreed in writing prior to project commencement.</p>
+
+  <h2>Confidentiality</h2>
+  <p>Any confidential information shared during the engagement will be treated with discretion and not disclosed to third parties without explicit written consent from the client.</p>
+
+  <h2>Limitation of Liability</h2>
+  <p>Rafe Faruq's liability is limited to the total amount paid for the specific service in question. We are not liable for indirect, incidental, or consequential damages arising from the use of our services.</p>
+
+  <h2>Governing Law</h2>
+  <p>These terms are governed by the laws of Bangladesh. Any disputes shall first be resolved through mutual good-faith discussion. If unresolved, disputes shall proceed to binding arbitration.</p>
+
+  <h2>Changes to These Terms</h2>
+  <p>We reserve the right to update these terms at any time. Continued engagement with our services following any change constitutes acceptance of the revised terms.</p>
+
+  <h2>Contact</h2>
+  <p>Rafe Faruq &middot; <a href="mailto:rafefaruq@gmail.com">rafefaruq@gmail.com</a> &middot; WhatsApp: +1 (646) 820-3721</p>
+</main>
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-main">
+
+    <div class="footer-col footer-col-brand">
+      <img src="rflogo.svg" alt="Rafe Faruq" height="48" style="margin-bottom:12px;">
+      <p class="footer-tagline">Your dedicated VA &amp; Digital Ops partner.<br>Helping founders and CEOs reclaim their time.</p>
+      <div class="footer-socials">
+        <div class="footer-icon-wrap">
+          <a href="https://linkedin.com/in/rafefaruq" target="_blank" class="footer-icon-a" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <span class="footer-tooltip">LinkedIn</span>
+        </div>
+        <div class="footer-icon-wrap">
+          <a href="https://facebook.com/rafefaruq" target="_blank" class="footer-icon-a" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <span class="footer-tooltip">Facebook</span>
+        </div>
+        <div class="footer-icon-wrap">
+          <a href="https://instagram.com/rafefaruq" target="_blank" class="footer-icon-a" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <span class="footer-tooltip">Instagram</span>
+        </div>
+        <div class="footer-icon-wrap">
+          <a href="https://x.com/rafefaruq" target="_blank" class="footer-icon-a" aria-label="X Twitter">
+            <i class="fab fa-x-twitter"></i>
+          </a>
+          <span class="footer-tooltip">X (Twitter)</span>
+        </div>
+        <div class="footer-icon-wrap">
+          <a href="https://wa.me/16468203721" target="_blank" class="footer-icon-a" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <span class="footer-tooltip">WhatsApp</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-col-title">Services</h4>
+      <a href="virtual-assistant.html" class="footer-link">Virtual Assistant</a>
+      <a href="lead-generation.html" class="footer-link">Lead Generation</a>
+      <a href="website-design.html" class="footer-link">Website Design &amp; Dev</a>
+      <a href="press-release.html" class="footer-link">Press Release &amp; Media</a>
+      <a href="google-maps.html" class="footer-link">Google Maps Optimization</a>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-col-title">Quick Message</h4>
+      <input type="text" class="footer-input" id="footer-name" placeholder="Your name">
+      <textarea class="footer-input footer-textarea" id="footer-msg" placeholder="Your message..."></textarea>
+      <button class="footer-wa-btn" onclick="
+        var name = document.getElementById('footer-name').value;
+        var msg = document.getElementById('footer-msg').value;
+        var text = 'Hi Rafe, I am ' + name + '. ' + msg;
+        window.open('https://wa.me/16468203721?text=' + encodeURIComponent(text), '_blank');
+      ">
+        <i class="fab fa-whatsapp"></i> Send on WhatsApp
+      </button>
+    </div>
+
+  </div>
+
+  <div class="footer-divider"></div>
+  <div class="footer-name-wrap">
+    <div class="footer-big-name">
+      <span class="footer-cap" style="margin-right:0.08em;">R</span><span class="footer-rest">AFE</span>
+      <span class="footer-word-gap"></span>
+      <span class="footer-cap" style="margin-right:0.08em;">F</span><span class="footer-rest">ARUQ</span>
+    </div>
+  </div>
+
+  <div class="footer-copyright">
+    <span>© 2025 Rafe Faruq. All rights reserved.</span>
+    <span class="footer-legal-links">
+      <a href="#" onclick="openPopup('privacy')" class="footer-legal-link">Privacy Policy</a>
+      <span style="color:rgba(255,255,255,0.2);">·</span>
+      <a href="#" onclick="openPopup('tos')" class="footer-legal-link">Terms of Service</a>
+    </span>
+  </div>
+</footer>
+
+<style>
+#legal-popup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px; }
+#legal-popup-box { background: #111; border: 0.5px solid rgba(0,212,255,0.2); border-radius: 14px; width: 100%; max-width: 720px; max-height: 85vh; display: flex; flex-direction: column; overflow: hidden; }
+#legal-popup-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 28px; border-bottom: 0.5px solid rgba(255,255,255,0.07); }
+#legal-popup-title { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; color: #fff; margin: 0; }
+#legal-popup-close { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.5); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+#legal-popup-close:hover { border-color: #00D4FF; color: #00D4FF; }
+#legal-popup-body { padding: 24px 28px; overflow-y: auto; font-family: 'Poppins', sans-serif; font-size: 13px; line-height: 1.8; color: rgba(255,255,255,0.55); }
+#legal-popup-body h3 { color: #00D4FF; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin: 20px 0 8px; }
+#legal-popup-body p { margin: 0 0 12px; }
+#legal-popup-body a { color: #00D4FF; }
+</style>
+<div id="legal-popup-overlay" style="display:none;" onclick="if(event.target===this)closeLegalPopup()">
+  <div id="legal-popup-box">
+    <div id="legal-popup-header">
+      <h2 id="legal-popup-title"></h2>
+      <button onclick="closeLegalPopup()" id="legal-popup-close">&#x2715;</button>
+    </div>
+    <div id="legal-popup-body"></div>
+  </div>
+</div>
+<script>
+const legalContent = {
+  privacy: {
+    title: "Privacy Policy",
+    body: `<p>Last updated: June 2025. This Privacy Policy explains how Rafe Faruq (legal name: Md Omar Faruq) collects and uses your information.</p><h3>Information We Collect</h3><p>We collect information you provide directly: your name, email address, phone number, and message when you use our contact forms or book a call.</p><h3>How We Use Your Information</h3><p>Your information is used solely to respond to your inquiries and deliver agreed services. We do not sell or share your data with third parties.</p><h3>Third-Party Tools</h3><p>We use the following tools which may process your data: FormSubmit.co (form delivery), Cal.com (appointment booking), WhatsApp Business (messaging). Each has their own privacy policy.</p><h3>Cookies</h3><p>This website uses minimal cookies for functionality only. No tracking or advertising cookies are used.</p><h3>Data Retention</h3><p>We retain your contact information only as long as necessary to fulfill the service or respond to your inquiry.</p><h3>Your Rights</h3><p>You may request deletion of your data at any time by emailing <a href="mailto:rafefaruq@gmail.com">rafefaruq@gmail.com</a>.</p><h3>Contact</h3><p>Rafe Faruq &middot; rafefaruq@gmail.com &middot; WhatsApp: +1 (646) 820-3721</p>`
+  },
+  tos: {
+    title: "Terms of Service",
+    body: `<p>Last updated: June 2025. These Terms govern all services provided by Md Omar Faruq, operating as Rafe Faruq, a freelance digital operations professional based in Bangladesh.</p><h3>Services</h3><p>Services include Virtual Assistant, Lead Generation, Website Design &amp; Development, Press Release &amp; Media, and Google Maps Optimization, as described on this website.</p><h3>Payment Terms</h3><p>Payment is due as specified per service package. Accepted methods: Payoneer and ACH bank transfer (US clients).</p><p><strong style="color:#fff;">ACH Payment Details (US Clients):</strong><br>Bank: First Century Bank<br>Bank Address: 1731 N Elm St, Commerce, GA 30529, USA<br>Routing (ABA): 061120084<br>Account Type: Checking<br>Beneficiary Name: Md Omar Faruq<br><em style="color:rgba(255,255,255,0.35);">Full account number provided on invoice.</em></p><h3>No Refund Policy</h3><p>All payments are non-refundable. Once work has commenced, no refunds will be issued under any circumstances. By making payment, the client acknowledges and agrees to this policy. This applies to all service packages without exception.</p><h3>Revisions</h3><p>Revisions are limited to the number specified per package. Additional revisions beyond the included limit will be billed separately.</p><h3>Client Responsibilities</h3><p>The client is responsible for providing accurate information, timely feedback, and necessary access required to complete the work. Delays caused by the client do not entitle the client to a refund.</p><h3>Delivery Timeline</h3><p>Timelines are estimates and may vary based on project complexity and client responsiveness. Rafe Faruq is not liable for delays caused by third-party platforms or client delays.</p><h3>Intellectual Property</h3><p>Upon full payment, the client owns the final deliverables. Rafe Faruq retains the right to display work in portfolio unless otherwise agreed in writing.</p><h3>Governing Law</h3><p>These terms are governed by the laws of Bangladesh. Any disputes shall be resolved through mutual agreement first, then arbitration if necessary.</p><h3>Contact</h3><p>Rafe Faruq &middot; rafefaruq@gmail.com &middot; WhatsApp: +1 (646) 820-3721</p>`
+  }
+};
+function openPopup(type) {
+  var content = legalContent[type];
+  document.getElementById('legal-popup-title').textContent = content.title;
+  document.getElementById('legal-popup-body').innerHTML = content.body;
+  document.getElementById('legal-popup-overlay').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeLegalPopup() {
+  document.getElementById('legal-popup-overlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLegalPopup(); });
+
+// Navbar
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 40) navbar.classList.add('scrolled');
+  else navbar.classList.remove('scrolled');
+});
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+hamburger.addEventListener('click', () => { mobileNav.classList.toggle('open'); });
+function closeMobileNav() {
+  mobileNav.classList.remove('open');
+  const menu = document.getElementById('mobileServicesMenu');
+  const arrow = document.getElementById('mobileServicesArrow');
+  if (menu) menu.classList.remove('open');
+  if (arrow) arrow.classList.remove('open');
+}
+function toggleMobileServices() {
+  const menu = document.getElementById('mobileServicesMenu');
+  const arrow = document.getElementById('mobileServicesArrow');
+  menu.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+</script>
+
+  <!-- Cal.com embed -->
+  <script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "strategy-call", {origin:"https://app.cal.com"});
+  Cal.config = Cal.config || {};
+  Cal.config.forwardQueryParams = true;
+  Cal.ns["strategy-call"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#1DA1FF"},"dark":{"cal-brand":"#1DA1FF"}},"hideEventTypeDetails":false,"layout":"week_view"});
+  </script>
+</body>
+</html>

@@ -1,0 +1,1337 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Press Release &amp; Media Distribution — Rafe Faruq</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Cal.com embed -->
+  <script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "strategy-call", {origin:"https://app.cal.com"});
+  Cal.config = Cal.config || {};
+  Cal.config.forwardQueryParams = true;
+  Cal.ns["strategy-call"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#1DA1FF"},"dark":{"cal-brand":"#1DA1FF"}},"hideEventTypeDetails":false,"layout":"week_view"});
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0a; --bg2: #0d0d0d; --bg3: #111111; --bg4: #141414;
+      --accent: #00D4FF; --accent-dim: rgba(0,212,255,0.15); --accent-glow: rgba(0,212,255,0.3);
+      --light: #F4F4F4; --text: #e8e8e8; --muted: #888; --white: #ffffff;
+      --border: rgba(255,255,255,0.08); --radius: 16px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; line-height: 1.6; }
+    ::selection { background: var(--accent); color: #000; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    .accent { color: var(--accent); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section-label {
+      display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--accent); background: var(--accent-dim);
+      border: 1px solid var(--accent-glow); border-radius: 20px; padding: 5px 14px; margin-bottom: 18px;
+    }
+    .section-title { font-size: clamp(28px,4vw,44px); font-weight: 800; line-height: 1.15; letter-spacing: -1px; color: var(--white); margin-bottom: 14px; }
+    .section-title span { color: var(--accent); }
+    .section-sub { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 640px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-decoration: none; border: none; }
+    .btn-primary { background: var(--accent); color: #000; }
+    .btn-primary:hover { background: #00b8dc; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,212,255,0.35); }
+    .btn-outline { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+    .btn-outline:hover { background: var(--accent-dim); transform: translateY(-2px); }
+
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-left.visible { opacity: 1; transform: translateX(0); }
+    .fade-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ─── NAVBAR ─────────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      width: auto;
+      padding: 0;
+      transition: all 0.3s ease;
+      background: transparent;
+      border: none;
+      border-bottom: none;
+      backdrop-filter: none;
+      right: auto;
+    }
+    #navbar.scrolled {
+      top: 12px;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      height: auto;
+      padding: 7px 10px;
+      background: rgba(15, 15, 20, 0.55);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(0, 212, 255, 0.15);
+      border-radius: 100px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
+      max-width: none;
+      margin: 0;
+    }
+    .nav-logo {
+      padding: 4px 10px 4px 6px;
+      margin-right: 4px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-logo img { height: 40px; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      padding: 9px 20px;
+      border-radius: 100px;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-links a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+    }
+    .nav-links a.active {
+      color: #fff;
+      background: rgba(0, 212, 255, 0.15);
+      border: 1px solid rgba(0, 212, 255, 0.25);
+      box-shadow: 0 0 16px rgba(0,212,255,0.15);
+    }
+    .nav-links .nav-cta {
+      background: var(--accent);
+      color: #000;
+      font-weight: 700;
+      padding: 9px 22px;
+      border-radius: 100px;
+      border: none;
+      margin-left: 6px;
+      font-size: 13px;
+    }
+    .nav-links .nav-cta:hover {
+      background: #00b8dc;
+      transform: none;
+      color: #000;
+    }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a::after { content: ' ▾'; font-size: 9px; opacity: 0.5; }
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(12, 12, 18, 0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(0,212,255,0.15);
+      border-radius: 16px;
+      padding: 6px;
+      min-width: 220px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .dropdown-menu a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      background: transparent;
+    }
+    .dropdown-menu a:hover {
+      background: rgba(0,212,255,0.1);
+      color: #fff;
+    }
+    .dropdown-menu a.dropdown-active {
+      color: var(--accent);
+      background: var(--accent-dim);
+    }
+    .dropdown-menu a .di { font-size: 16px; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
+    .mobile-nav { display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: rgba(10,10,10,0.97); backdrop-filter: blur(20px); z-index: 999; padding: 32px 24px; flex-direction: column; gap: 8px; overflow-y: auto; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-size: 18px; font-weight: 600; color: var(--text); text-decoration: none; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .mobile-nav a:hover { color: var(--accent); }
+    .mobile-services-wrap { border-bottom: 1px solid var(--border); }
+    .mobile-services-toggle { font-size: 18px; font-weight: 600; color: var(--text); padding: 14px 0; cursor: pointer; display: flex; align-items: center; justify-content: space-between; }
+    .mobile-services-toggle:hover { color: var(--accent); }
+    .mobile-services-arrow { font-size: 11px; transition: transform 0.25s; display: inline-block; }
+    .mobile-services-arrow.open { transform: rotate(180deg); }
+    .mobile-services-menu { display: none; padding: 4px 0 4px 16px; flex-direction: column; }
+    .mobile-services-menu.open { display: flex; }
+    .mobile-services-menu a { font-size: 15px !important; font-weight: 500 !important; padding: 9px 0 !important; border-bottom: 1px solid rgba(255,255,255,0.04) !important; color: var(--muted) !important; }
+    .mobile-services-menu a:hover { color: var(--accent) !important; }
+
+    /* ─── HERO ───────────────────────────── */
+    #hero { min-height: 100vh; background: var(--bg); display: flex; align-items: center; padding-top: 100px; position: relative; overflow: hidden; }
+    #hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%); pointer-events: none; }
+    #hero::after { content: ''; position: absolute; bottom: -100px; left: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,212,255,0.05) 0%, transparent 70%); pointer-events: none; }
+    #hero-particles-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 1; padding: 80px 0; min-height: calc(100vh - 72px); }
+    .hero-label { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; }
+    .hero-label::before { content: ''; display: block; width: 30px; height: 2px; background: var(--accent); }
+    .hero-title { font-size: clamp(32px,4.5vw,56px); font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; color: var(--white); margin-bottom: 24px; }
+    .hero-title .line2 { color: var(--accent); display: block; }
+    .hero-sub { font-size: 16px; color: var(--muted); line-height: 1.75; max-width: 500px; margin-bottom: 36px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
+    .hero-trust-line { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+    .hero-trust-line strong { color: var(--text); }
+
+    /* PR Slideshow */
+    .pr-slideshow-wrap {
+      position: relative;
+      width: 480px;
+      height: 380px;
+    }
+    .pr-slideshow {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .pr-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .pr-slide.active {
+      opacity: 1;
+    }
+    @media (max-width: 768px) {
+      .pr-slideshow-wrap { width: 100%; height: 260px; }
+    }
+
+    /* PR Card visual */
+    .hero-right { display: flex; justify-content: center; align-items: center; }
+    .pr-card-wrap { position: relative; }
+    .pr-card-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 320px; height: 320px; background: radial-gradient(circle, rgba(0,212,255,0.18) 0%, transparent 70%); pointer-events: none; }
+    .pr-card {
+      background: #111; border: 1px solid rgba(0,212,255,0.3); border-radius: 20px;
+      padding: 32px 28px; width: 320px;
+      box-shadow: 0 0 40px rgba(0,212,255,0.15);
+      animation: pr-float 4s ease-in-out infinite alternate;
+      position: relative; z-index: 1;
+    }
+    @keyframes pr-float { from { transform: translateY(0px); } to { transform: translateY(-20px); } }
+    .pr-card-icon { font-size: 32px; text-align: center; margin-bottom: 14px; }
+    .pr-card-label { font-size: 10px; font-weight: 800; letter-spacing: 3px; color: var(--accent); text-align: center; margin-bottom: 20px; background: var(--accent-dim); border-radius: 4px; padding: 4px 0; }
+    .pr-card-lines { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+    .pr-line { height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; }
+    .pr-line.w-full { width: 100%; }
+    .pr-line.w-80 { width: 80%; }
+    .pr-line.w-60 { width: 60%; }
+    .pr-outlets { display: flex; gap: 8px; justify-content: center; }
+    .pr-outlet-dot { flex: 1; height: 28px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 8px; color: var(--muted); font-weight: 600; letter-spacing: 0.5px; }
+
+    /* ─── MARQUEE BANNER ─────────────────── */
+    #marquee-banner { padding: 40px 0; background: #F5F0E8; border-top: 1px solid rgba(0,0,0,0.08); border-bottom: 1px solid rgba(0,0,0,0.08); overflow: hidden; }
+    .marquee-label { text-align: center; font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #888888; margin-bottom: 20px; }
+    .marquee-outer { overflow: hidden; width: 100%; }
+    .marquee-track { display: flex; gap: 16px; width: max-content; animation: marquee-scroll 28s linear infinite; }
+    @keyframes marquee-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .logo-pill { flex-shrink: 0; height: 56px; padding: 0 24px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center; background: #ffffff; }
+    .logo-pill img { height: 28px; width: auto; object-fit: contain; display: block; }
+
+    /* ─── WHY PRESS RELEASE ──────────────── */
+    #why-pr { padding: 96px 0; background: var(--bg); }
+    .why-header { text-align: center; margin-bottom: 56px; }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .why-card { background: var(--bg3); border: 1px solid rgba(0,212,255,0.1); border-radius: 16px; padding: 28px; transition: border-color 0.3s, transform 0.3s; }
+    .why-card:hover { border-color: rgba(0,212,255,0.35); transform: translateY(-4px); }
+    .why-icon { font-size: 40px; margin-bottom: 16px; }
+    .why-title { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .why-desc { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
+
+    /* ─── PACKAGES ───────────────────────── */
+    #packages { padding: 96px 0; background: var(--bg2); }
+    .pkg-header { text-align: center; margin-bottom: 56px; }
+    .pkg-group { margin-bottom: 56px; }
+    .pkg-group-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+    .pkg-grid-1 { display: flex; justify-content: center; }
+    .pkg-grid-1 .pkg-card { max-width: 540px; width: 100%; }
+    .pkg-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .pkg-grid-3 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .pkg-grid-4 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+    .pkg-card {
+      background: var(--bg2); border: 1px solid rgba(0,212,255,0.15); border-radius: 16px;
+      padding: 24px; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s; position: relative;
+    }
+    .pkg-card:hover { border-color: rgba(0,212,255,0.4); transform: translateY(-4px); }
+    .pkg-card-banner {
+      margin: -24px -24px 20px -24px;
+      overflow: hidden;
+      border-radius: 12px 12px 0 0;
+      border-bottom: 1px solid rgba(0,212,255,0.1);
+    }
+    .pkg-card-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px 12px 0 0;
+    }
+    .pkg-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 16px; }
+    .pkg-name { font-size: 17px; font-weight: 800; color: var(--white); }
+    .pkg-badge { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; background: var(--accent-dim); border: 1px solid var(--accent-glow); color: var(--accent); border-radius: 20px; padding: 3px 10px; white-space: nowrap; flex-shrink: 0; }
+    .pkg-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .pkg-stat { font-size: 11px; font-weight: 600; color: var(--accent); background: rgba(0,212,255,0.07); border: 1px solid rgba(0,212,255,0.2); border-radius: 20px; padding: 3px 10px; }
+    .pkg-features { list-style: none; margin-bottom: 20px; flex: 1; }
+    .pkg-features li { display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; color: var(--muted); padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .pkg-features li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; font-size: 11px; }
+    .pkg-price-row { display: flex; align-items: baseline; gap: 4px; margin-bottom: 16px; }
+    .pkg-price { font-size: 34px; font-weight: 800; color: var(--white); letter-spacing: -1px; }
+    .pkg-price-unit { font-size: 13px; color: var(--muted); }
+    .pkg-btn {
+      width: 100%; padding: 11px; border-radius: 8px; border: 1.5px solid var(--accent);
+      background: transparent; color: var(--accent); font-family: 'Poppins', sans-serif;
+      font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.25s; letter-spacing: 0.3px;
+    }
+    .pkg-btn:hover { background: var(--accent); color: #000; }
+
+    /* ─── ORDER MODAL ────────────────────── */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 5000; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: #0d0d0d; border: 1px solid rgba(0,212,255,0.2); border-radius: 20px;
+      padding: 36px 32px; max-width: 560px; width: 100%; position: relative;
+      max-height: 90vh; overflow-y: auto; margin: auto;
+    }
+    .modal-close { position: absolute; top: 16px; right: 20px; background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; transition: color 0.2s; line-height: 1; }
+    .modal-close:hover { color: var(--accent); }
+    .modal-order-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .modal-title { font-size: 22px; font-weight: 800; color: var(--white); margin-bottom: 20px; }
+    .modal-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .modal-stat-pill { font-size: 11px; font-weight: 600; background: var(--accent-dim); border: 1px solid var(--accent-glow); color: var(--accent); border-radius: 20px; padding: 4px 12px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .form-row.full { grid-template-columns: 1fr; }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-group label { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; }
+    .form-input, .form-textarea {
+      background: #151515; border: 1px solid var(--border); border-radius: 8px;
+      padding: 11px 14px; font-family: 'Poppins', sans-serif; font-size: 13px;
+      color: var(--text); outline: none; transition: border-color 0.2s; width: 100%;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.25); }
+    .form-textarea { resize: vertical; min-height: 80px; }
+    .content-option-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin: 20px 0 12px; }
+    .content-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+    .content-option {
+      display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px;
+      border: 1.5px solid var(--border); border-radius: 10px; cursor: pointer; transition: border-color 0.2s;
+    }
+    .content-option:hover { border-color: rgba(0,212,255,0.3); }
+    .content-option.selected { border-color: var(--accent); background: var(--accent-dim); }
+    .content-option input[type="radio"] { margin-top: 3px; accent-color: var(--accent); flex-shrink: 0; }
+    .content-option-info { flex: 1; }
+    .content-option-title { font-size: 13px; font-weight: 700; color: var(--white); }
+    .content-option-price { font-size: 12px; font-weight: 700; color: var(--accent); margin: 0 8px; }
+    .content-option-desc { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+    .modal-submit {
+      width: 100%; padding: 14px; border-radius: 10px; border: none;
+      background: var(--accent); color: #000; font-family: 'Poppins', sans-serif;
+      font-size: 14px; font-weight: 800; cursor: pointer; transition: all 0.25s; letter-spacing: 0.3px;
+    }
+    .modal-submit:hover { background: #00b8dc; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(0,212,255,0.3); }
+    .modal-success { display: none; text-align: center; padding: 32px 0; }
+    .modal-success-icon { font-size: 56px; margin-bottom: 16px; }
+    .modal-success-title { font-size: 22px; font-weight: 800; color: var(--white); margin-bottom: 10px; }
+    .modal-success-text { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+    /* ─── HOW IT WORKS ───────────────────── */
+    #how-it-works { padding: 96px 0; background: var(--light); }
+    .hiw-header { text-align: center; margin-bottom: 56px; }
+    .hiw-header .section-title { color: #111; }
+    .hiw-header .section-sub { color: #555; margin: 0 auto; }
+    .hiw-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; position: relative; }
+    .hiw-steps::before { content: ''; position: absolute; top: 30px; left: 16.7%; right: 16.7%; height: 2px; background: repeating-linear-gradient(to right, rgba(0,212,255,0.4) 0, rgba(0,212,255,0.4) 8px, transparent 8px, transparent 16px); z-index: 0; }
+    .hiw-step { text-align: center; padding: 0 24px; position: relative; z-index: 1; }
+    .hiw-num { width: 60px; height: 60px; border-radius: 50%; background: var(--accent); color: #000; font-size: 22px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 0 0 6px rgba(0,212,255,0.15); }
+    .hiw-title { font-size: 16px; font-weight: 700; color: #111; margin-bottom: 10px; }
+    .hiw-desc { font-size: 13.5px; color: #555; line-height: 1.65; }
+
+    /* ─── FAQ ────────────────────────────── */
+    #faq { padding: 96px 0; background: var(--light); border-top: 1px solid #e5e5e5; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start; }
+    .faq-left { position: sticky; top: 100px; }
+    .faq-left .section-title { color: #111; }
+    .faq-left .section-title span { color: var(--accent); }
+    .faq-img { width: 100%; max-width: 320px; height: auto; border-radius: 16px; margin-top: 28px; }
+    .faq-items { display: flex; flex-direction: column; gap: 10px; }
+    .faq-item { background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden; transition: border-color 0.2s; }
+    .faq-item.open { border-color: var(--accent); }
+    .faq-q { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; cursor: pointer; font-size: 14px; font-weight: 600; color: #111; user-select: none; }
+    .faq-q:hover { color: var(--accent); }
+    .faq-toggle { font-size: 20px; line-height: 1; color: var(--accent); flex-shrink: 0; transition: transform 0.25s; }
+    .faq-item.open .faq-toggle { transform: rotate(45deg); }
+    .faq-a { display: none; padding: 0 22px 18px; font-size: 14px; color: #444; line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ─── CTA ────────────────────────────── */
+    #cta { padding: 120px 0; background: var(--bg2); border-top: 1px solid var(--border); }
+    .cta-inner { text-align: center; }
+    .cta-title { font-size: clamp(32px,5vw,52px); font-weight: 800; color: var(--white); margin-bottom: 16px; letter-spacing: -1px; }
+    .cta-title span { color: var(--accent); }
+    .cta-sub { font-size: 17px; color: var(--muted); max-width: 520px; margin: 0 auto 40px; line-height: 1.7; }
+
+    /* ─── FOOTER ─────────────────────────── */
+    #particles-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+    .site-footer { background: #0a0a0a; padding: 60px 5% 0; border-top: 1px solid rgba(0,212,255,0.1); }
+    .footer-main { display: flex; gap: 48px; justify-content: space-between; flex-wrap: wrap; }
+    .footer-col { flex: 1; min-width: 200px; display: flex; flex-direction: column; }
+    .footer-col-brand {
+      flex: 1.3;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+    .footer-col-title { font-family: 'Poppins', sans-serif; font-size: 11px; letter-spacing: 0.15em; color: #00D4FF; text-transform: uppercase; margin-bottom: 16px; font-weight: 600; }
+    .footer-tagline { font-family: 'Poppins', sans-serif; font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.7; margin-bottom: 20px; }
+    .footer-link { font-family: 'Poppins', sans-serif; font-size: 13px; color: rgba(255,255,255,0.45); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+    .footer-link:hover { color: #00D4FF; }
+    .footer-socials { display: flex; gap: 10px; flex-wrap: wrap; }
+    .footer-icon-wrap { position: relative; display: inline-flex; }
+    .footer-icon-a { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 15px; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+    .footer-icon-wrap:hover .footer-icon-a { border-color: #00D4FF; color: #00D4FF; }
+    .footer-tooltip { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: #ffffff; color: #0a0a0a; font-size: 11px; font-family: 'Poppins', sans-serif; font-weight: 500; padding: 4px 10px; border-radius: 5px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.18s ease; z-index: 10; }
+    .footer-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: #ffffff; }
+    .footer-icon-wrap:hover .footer-tooltip { opacity: 1; }
+    .footer-input { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 10px 14px; color: #fff; font-family: 'Poppins', sans-serif; font-size: 13px; margin-bottom: 10px; outline: none; transition: border-color 0.2s; }
+    .footer-input:focus { border-color: rgba(0,212,255,0.4); }
+    .footer-textarea { height: 80px; resize: none; }
+    .footer-wa-btn { background: #25D366; color: #fff; border: none; border-radius: 8px; padding: 11px 16px; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: background 0.2s; }
+    .footer-wa-btn:hover { background: #1ebe5d; }
+    .footer-divider { border: none; border-top: 0.5px solid rgba(0,212,255,0.12); margin: 48px 0 0; }
+    .footer-name-wrap { text-align: center; padding: 32px 5% 0; overflow: hidden; }
+    .footer-big-name { font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: clamp(38px, 8vw, 100px); white-space: nowrap; color: #f4f4f4; line-height: 1; display: inline-flex; align-items: flex-end; letter-spacing: 0.02em; }
+    .footer-cap { color: #00D4FF; font-size: 1.38em; line-height: 1; display: inline-block; vertical-align: bottom; transform: translateY(0.08em); }
+    .footer-rest { display: inline-block; vertical-align: bottom; line-height: 1; letter-spacing: 0.04em; }
+    .footer-word-gap { display: inline-block; width: 0.32em; vertical-align: bottom; }
+    .footer-copyright { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; font-family: 'Poppins', sans-serif; font-size: 12px; color: rgba(255,255,255,0.2); text-align: center; padding: 16px 5% 20px; margin-top: 12px; border-top: 0.5px solid rgba(255,255,255,0.05); }
+    .footer-legal-links { display: flex; align-items: center; gap: 8px; }
+    .footer-legal-link { color: rgba(255,255,255,0.3); text-decoration: none; font-size: 12px; font-family: 'Poppins', sans-serif; transition: color 0.2s; }
+    .footer-legal-link:hover { color: #00D4FF; }
+
+    /* ─── RESPONSIVE ─────────────────────── */
+    @media (max-width: 1100px) {
+      .pkg-grid-3, .pkg-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .pkg-grid-2 { grid-template-columns: 1fr 1fr; }
+      .hiw-steps { grid-template-columns: 1fr; gap: 32px; }
+      .hiw-steps::before { display: none; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; padding: 80px 0 60px; }
+      .hero-right { display: none; }
+      .why-grid { grid-template-columns: 1fr; }
+      .pkg-grid-2, .pkg-grid-3, .pkg-grid-4 { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .faq-left { position: static; }
+      .faq-img { display: none; }
+    }
+    @media (max-width: 480px) {
+      .site-footer { padding: 40px 5% 0; overflow-x: hidden; }
+      .footer-main { flex-direction: column; gap: 32px; }
+      .footer-col { min-width: 100%; }
+      .footer-big-name { font-size: clamp(28px, 10vw, 60px); white-space: nowrap; overflow: visible; }
+      .footer-name-wrap { padding: 24px 4% 0; overflow: visible; text-align: center; }
+      .modal { padding: 28px 20px; }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XFWG6H186P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XFWG6H186P');
+  </script>
+</head>
+<body>
+
+<!-- ═══════════ NAVBAR ════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/index.html" class="nav-logo"><img src="/rflogo.svg" alt="Rafe Faruq" style="display:block;"></a>
+    <ul class="nav-links">
+      <li><a href="/index.html" class="nav-link">Home</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="nav-link active">Services</a>
+        <div class="dropdown-menu">
+          <a href="/virtual-assistant.html"><span class="di">🤝</span> Virtual Assistant</a>
+          <a href="/lead-generation.html"><span class="di">🎯</span> Lead Generation</a>
+          <a href="/website-design.html"><span class="di">💻</span> Website Design &amp; Dev</a>
+          <a href="/press-release.html" class="dropdown-active"><span class="di">📰</span> Press Release &amp; Media</a>
+          <a href="/google-maps.html"><span class="di">📍</span> Google Maps Optimization</a>
+        </div>
+      </li>
+      <li><a href="/index.html#blog" class="nav-link">Blog</a></li>
+      <li>
+        <a data-cal-link="rafe-faruq/strategy-call" data-cal-namespace="strategy-call" data-cal-config='{"layout":"week_view","useSlotsViewOnSmallScreen":"true","theme":"auto"}' class="btn nav-cta">Work With Me</a>
+      </li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="/index.html" onclick="closeMobileNav()">Home</a>
+  <div class="mobile-services-wrap">
+    <div class="mobile-services-toggle" onclick="toggleMobileServices()">Services <span class="mobile-services-arrow" id="mobileServicesArrow">▼</span></div>
+    <div class="mobile-services-menu" id="mobileServicesMenu">
+      <a href="/virtual-assistant.html" onclick="closeMobileNav()">🤝 Virtual Assistant</a>
+      <a href="/lead-generation.html" onclick="closeMobileNav()">🎯 Lead Generation</a>
+      <a href="/website-design.html" onclick="closeMobileNav()">💻 Website Design &amp; Dev</a>
+      <a href="/press-release.html" onclick="closeMobileNav()" style="color:var(--accent)!important;">📰 Press Release &amp; Media</a>
+      <a href="/google-maps.html" onclick="closeMobileNav()">📍 Google Maps Optimization</a>
+    </div>
+  </div>
+  <a href="/index.html#blog" onclick="closeMobileNav()">Blog</a>
+  <a href="#cta" onclick="closeMobileNav()" style="color:var(--accent);margin-top:8px;">Work With Me →</a>
+</nav>
+
+<!-- ═══════════ HERO ════════════ -->
+<section id="hero">
+  <canvas id="hero-particles-canvas"></canvas>
+  <div class="container hero-grid">
+    <div class="fade-left">
+      <div class="hero-label">Press Release &amp; Media</div>
+      <h1 class="hero-title">
+        Get Your Story In<br>
+        <span class="line2">Front of Millions</span>
+      </h1>
+      <p class="hero-sub">I distribute your press release to top-tier news outlets — Yahoo Finance, Business Insider, USA Today, AP News, and hundreds more. Build authority, boost SEO, and get seen.</p>
+      <div class="hero-btns">
+        <a href="#packages" class="btn btn-primary">Choose a Package</a>
+        <a data-cal-link="rafe-faruq/strategy-call" data-cal-namespace="strategy-call" data-cal-config='{"layout":"week_view","useSlotsViewOnSmallScreen":"true","theme":"auto"}' class="btn btn-outline">Get a Custom Quote</a>
+      </div>
+      <div class="hero-trust-line">
+        <span>📰</span>
+        <span><strong>400M+</strong> combined monthly readers across all outlets</span>
+      </div>
+    </div>
+    <div class="hero-right fade-right">
+      <div class="pr-slideshow-wrap">
+        <div class="pr-slideshow">
+          <img src="/pr-slide-1.png" alt="Press Release Sample 1" class="pr-slide active">
+          <img src="/pr-slide-2.png" alt="Press Release Sample 2" class="pr-slide">
+          <img src="/pr-slide-3.png" alt="Press Release Sample 3" class="pr-slide">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ MARQUEE BANNER ════════════ -->
+<section id="marquee-banner">
+  <p class="marquee-label">Featured On</p>
+  <div class="marquee-outer">
+    <div class="marquee-track">
+  <div class="logo-pill"><img src="/logo-yahoo.png" alt="Yahoo Finance"></div>
+  <div class="logo-pill"><img src="/logo-bi.png" alt="Business Insider"></div>
+  <div class="logo-pill"><img src="/logo-usatoday.png" alt="USA Today"></div>
+  <div class="logo-pill"><img src="/logo-apnews.png" alt="AP News"></div>
+  <div class="logo-pill"><img src="/logo-benzinga.png" alt="Benzinga"></div>
+  <div class="logo-pill"><img src="/logo-streetinsider.png" alt="StreetInsider"></div>
+  <div class="logo-pill"><img src="/logo-newsbreak.png" alt="NewsBreak"></div>
+  <div class="logo-pill"><img src="/logo-yahoo.png" alt="Yahoo Finance"></div>
+  <div class="logo-pill"><img src="/logo-bi.png" alt="Business Insider"></div>
+  <div class="logo-pill"><img src="/logo-usatoday.png" alt="USA Today"></div>
+  <div class="logo-pill"><img src="/logo-apnews.png" alt="AP News"></div>
+  <div class="logo-pill"><img src="/logo-benzinga.png" alt="Benzinga"></div>
+  <div class="logo-pill"><img src="/logo-streetinsider.png" alt="StreetInsider"></div>
+  <div class="logo-pill"><img src="/logo-newsbreak.png" alt="NewsBreak"></div>
+</div>
+  </div>
+</section>
+
+<!-- ═══════════ WHY PRESS RELEASE ════════════ -->
+<section id="why-pr">
+  <div class="container">
+    <div class="why-header fade-in">
+      <span class="section-label">Why It Matters</span>
+      <h2 class="section-title">What a Press Release Does <span>For Your Business</span></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card fade-in" style="transition-delay:0.05s;"><div class="why-icon">📈</div><div class="why-title">Boost Your SEO</div><p class="why-desc">High DA backlinks from authority news sites improve your search rankings fast.</p></div>
+      <div class="why-card fade-in" style="transition-delay:0.1s;"><div class="why-icon">🌍</div><div class="why-title">Reach Millions</div><p class="why-desc">Your story distributed to outlets with 400M+ combined monthly readers.</p></div>
+      <div class="why-card fade-in" style="transition-delay:0.15s;"><div class="why-icon">🏆</div><div class="why-title">Build Credibility</div><p class="why-desc">"As seen on Yahoo Finance" builds instant trust with clients and investors.</p></div>
+      <div class="why-card fade-in" style="transition-delay:0.2s;"><div class="why-icon">🔍</div><div class="why-title">Get Indexed</div><p class="why-desc">Google picks up news stories fast — get found for your brand and keywords.</p></div>
+      <div class="why-card fade-in" style="transition-delay:0.25s;"><div class="why-icon">📣</div><div class="why-title">Push Your Brand</div><p class="why-desc">Launch a product, announce a partnership, or establish thought leadership.</p></div>
+      <div class="why-card fade-in" style="transition-delay:0.3s;"><div class="why-icon">🔗</div><div class="why-title">Authority Backlinks</div><p class="why-desc">Do-follow links from DA 60–93 sites that move the needle.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PACKAGES ════════════ -->
+<section id="packages">
+  <div class="container">
+    <div class="pkg-header fade-in">
+      <span class="section-label">Choose Your Outlet</span>
+      <h2 class="section-title">Pick Your <span>Media Package</span></h2>
+      <p class="section-sub">Each package gets your story published on that specific outlet. Combine multiple for maximum reach.</p>
+    </div>
+
+    <!-- GROUP 1 — BASE -->
+    <div class="pkg-group fade-in">
+      <div class="pkg-group-label">Base Package</div>
+      <div class="pkg-grid-1">
+        <div class="pkg-card"
+          data-pkg-name="+350 General News Media"
+          data-pkg-price="$199"
+          data-s1="📰 350+ Outlets" data-s2="📊 DA 30-60" data-s3="👥 7.3M Visitors" data-s4="🔗 Do-follow: Mix">
+          <div class="pkg-card-banner">
+            <img src="/350_General.png" alt="350+ General News Media" style="width:100%;height:auto;display:block;border-radius:12px 12px 0 0;">
+          </div>
+          <div class="pkg-card-top">
+            <div class="pkg-name">+350 General News Media</div>
+            <span class="pkg-badge">Best for Startups</span>
+          </div>
+          <div class="pkg-stats">
+            <span class="pkg-stat">350+ News Outlets</span>
+            <span class="pkg-stat">DA 30-60</span>
+            <span class="pkg-stat">7.3M Monthly Visitors</span>
+          </div>
+          <ul class="pkg-features">
+            <li>Most topics accepted</li>
+            <li>YouTube embed allowed</li>
+            <li>Direct backlink (mixture)</li>
+            <li>Do-follow links (mixture)</li>
+            <li>7.3 Million unique monthly visitors</li>
+          </ul>
+          <div class="pkg-price-row">
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <div style="font-size:13px;color:#888;text-decoration:line-through;font-weight:500;">$299</div>
+              <div style="display:flex;align-items:baseline;gap:6px;">
+                <div class="pkg-price">$199</div>
+                <div class="pkg-price-unit">/package</div>
+                <span style="font-size:11px;font-weight:700;color:#00D4FF;background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.25);border-radius:20px;padding:2px 8px;">33% OFF</span>
+              </div>
+            </div>
+          </div>
+          <button class="pkg-btn" onclick="openModal(this)">Get Started</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- GROUP 2 — PREMIUM -->
+    <div class="pkg-group fade-in" style="transition-delay:0.1s;">
+      <div class="pkg-group-label">Premium Outlets</div>
+      <div class="pkg-grid-2">
+        <div class="pkg-card"
+          data-pkg-name="Yahoo Finance"
+          data-pkg-price="$699"
+          data-s1="👥 240.8M Visitors/mo" data-s2="📊 DA 93" data-s3="🔗 Do-follow: No" data-s4="🏦 Finance &amp; Business">
+          <div class="pkg-card-banner">
+            <img src="/yahoo_finance.png" alt="Yahoo Finance">
+          </div>
+          <div class="pkg-card-top"><div class="pkg-name">Yahoo Finance</div><span class="pkg-badge">Elite Authority</span></div>
+          <div class="pkg-stats"><span class="pkg-stat">240.8M Monthly Visitors</span><span class="pkg-stat">DA 93</span><span class="pkg-stat">Do-follow: No</span></div>
+          <ul class="pkg-features">
+            <li>240.8M monthly visitors</li>
+            <li>All major search engines</li>
+            <li>Financial &amp; Business niche</li>
+            <li>Direct backlink: No</li>
+            <li>Letter of Authorization required</li>
+          </ul>
+          <div class="pkg-price-row"><div class="pkg-price">$699</div><div class="pkg-price-unit">/package</div></div>
+          <button class="pkg-btn" onclick="openModal(this)">Get Started</button>
+        </div>
+        <div class="pkg-card"
+          data-pkg-name="Business Insider"
+          data-pkg-price="$249"
+          data-s1="👥 75.9M Visitors/mo" data-s2="📊 DA 91" data-s3="🔗 Do-follow: Yes" data-s4="🔗 3 Links Allowed">
+          <div class="pkg-card-banner">
+            <img src="/business_insiders.png" alt="Business Insider">
+          </div>
+          <div class="pkg-card-top"><div class="pkg-name">Business Insider</div><span class="pkg-badge">High Trust</span></div>
+          <div class="pkg-stats"><span class="pkg-stat">75.9M Monthly Visitors</span><span class="pkg-stat">DA 91</span><span class="pkg-stat">Do-follow: Yes</span></div>
+          <ul class="pkg-features">
+            <li>75.9M monthly visitors</li>
+            <li>All major search engines</li>
+            <li>Financial &amp; Business niche</li>
+            <li>Direct backlink: Yes</li>
+            <li>3 links allowed</li>
+          </ul>
+          <div class="pkg-price-row"><div class="pkg-price">$249</div><div class="pkg-price-unit">/package</div></div>
+          <button class="pkg-btn" onclick="openModal(this)">Get Started</button>
+        </div>
+        <div class="pkg-card"
+          data-pkg-name="USA Today"
+          data-pkg-price="$179"
+          data-s1="👥 142M+ Visitors/mo" data-s2="📊 DA 92" data-s3="🗞️ #5 U.S. Newspaper" data-s4="📍 220 U.S. Markets">
+          <div class="pkg-card-banner">
+            <img src="/usa_today.png" alt="USA Today">
+          </div>
+          <div class="pkg-card-top"><div class="pkg-name">USA Today</div><span class="pkg-badge">National Reach</span></div>
+          <div class="pkg-stats"><span class="pkg-stat">142M+ Monthly Visitors</span><span class="pkg-stat">DA 92</span><span class="pkg-stat">#5 U.S. Newspaper</span></div>
+          <ul class="pkg-features">
+            <li>2M+ digital subscribers</li>
+            <li>Google Index: YES</li>
+            <li>220 U.S. Markets</li>
+            <li>40+ years credibility</li>
+            <li>Built for AI Search Era</li>
+          </ul>
+          <div class="pkg-price-row"><div class="pkg-price">$179</div><div class="pkg-price-unit">/package</div></div>
+          <button class="pkg-btn" onclick="openModal(this)">Get Started</button>
+        </div>
+        <div class="pkg-card"
+          data-pkg-name="AP News"
+          data-pkg-price="$149"
+          data-s1="👥 87M Visitors/mo" data-s2="📊 DA 92" data-s3="🔗 Do-follow: Yes" data-s4="🌐 Global Rank: 713">
+          <div class="pkg-card-banner">
+            <img src="/ap_news.png" alt="AP News">
+          </div>
+          <div class="pkg-card-top"><div class="pkg-name">AP News</div><span class="pkg-badge">Most Popular</span></div>
+          <div class="pkg-stats"><span class="pkg-stat">87M Monthly Visitors</span><span class="pkg-stat">DA 92</span><span class="pkg-stat">Do-follow: Yes</span></div>
+          <ul class="pkg-features">
+            <li>87M monthly visitors</li>
+            <li>All major search engines</li>
+            <li>News niche</li>
+            <li>Direct backlink: Yes</li>
+            <li>3 links allowed</li>
+            <li>Global Rank: 713</li>
+          </ul>
+          <div class="pkg-price-row"><div class="pkg-price">$149</div><div class="pkg-price-unit">/package</div></div>
+          <button class="pkg-btn" onclick="openModal(this)">Get Started</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- GROUP 3 — AUTHORITY -->
+    <div class="pkg-group fade-in" style="transition-delay:0.15s;">
+      <div class="pkg-group-label">Authority Outlets</div>
+      <div class="pkg-grid-3">
+        <div class="pkg-card"
+          data-pkg-name="Benzinga"
+          data-pkg-price="$99"
+          data-s1="👥 17.6M Visitors/mo" data-s2="📊 DA 88" data-s3="🔗 Do-follow: Yes" data-s4="🔗 3 Links Allowed">
+          <div class="pkg-card-banner">
+            <img src="/benzinga.png" alt="Benzinga">
+          </div>
+          <div class="pkg-card-top"><div class="pkg-name">Benzinga</div></div>
+          <div class="pkg-stats"><span class="pkg-stat">17.6M Monthly Visitors</span><span class="pkg-stat">DA 88</span><span class="pkg-stat">Do-follow: Yes</span></div>
+          <ul class="pkg-features"><li>17.6M monthly visitors</li><li>All major search engines</li><li>Direct backlink: Yes</li><li>3 links allowed</li></ul>
+          <div class="pkg-price-row"><div class="pkg-price">$99</div><div class="pkg-price-unit">/package</div></div>
+          <button class="pkg-btn" onclick="openModal(this)">Get Started</button>
+        </div>
+        <div class="pkg-card"
+          data-pkg-name="StreetInsider"
+          data-pkg-price="$99"
+          data-s1="👥 4.5M Visitors/mo" data-s2="📊 DA 83" data-s3="🔗 Do-follow: No" data-s4="🔗 3 Links Allowed">
+          <div class="pkg-card-banner">
+            <img src="/streetinsider.png" alt="StreetInsider">
+          </div>
+          <div class="pkg-card-top"><div class="pkg-name">StreetInsider</div></div>
+          <div class="pkg-stats"><span class="pkg-stat">4.5M Monthly Visitors</span><span class="pkg-stat">DA 83</span><span class="pkg-stat">Do-follow: No</span></div>
+          <ul class="pkg-features"><li>4.5M monthly visitors</li><li>Financial &amp; News niche</li><li>Direct backlink: Yes</li><li>3 links allowed</li></ul>
+          <div class="pkg-price-row"><div class="pkg-price">$99</div><div class="pkg-price-unit">/package</div></div>
+          <button class="pkg-btn" onclick="openModal(this)">Get Started</button>
+        </div>
+        <div class="pkg-card"
+          data-pkg-name="Barchart"
+          data-pkg-price="$109"
+          data-s1="👥 4.7M Visitors/mo" data-s2="📊 DA 62" data-s3="🔗 Do-follow: No" data-s4="🔗 3 Links Allowed">
+          <div class="pkg-card-banner">
+            <img src="/barchart.png" alt="Barchart">
+          </div>
+          <div class="pkg-card-top"><div class="pkg-name">Barchart</div></div>
+          <div class="pkg-stats"><span class="pkg-stat">4.7M Monthly Visitors</span><span class="pkg-stat">DA 62</span><span class="pkg-stat">Do-follow: No</span></div>
+          <ul class="pkg-features"><li>4.7M monthly visitors</li><li>Financial &amp; News niche</li><li>Direct backlink: Yes</li><li>3 links allowed</li></ul>
+          <div class="pkg-price-row"><div class="pkg-price">$109</div><div class="pkg-price-unit">/package</div></div>
+          <button class="pkg-btn" onclick="openModal(this)">Get Started</button>
+        </div>
+        <div class="pkg-card"
+          data-pkg-name="NewsBreak"
+          data-pkg-price="$79"
+          data-s1="👥 20M Visitors/mo" data-s2="📊 DA 74" data-s3="🔗 Do-follow: Yes" data-s4="📰 Google News: Yes">
+          <div class="pkg-card-banner">
+            <img src="/newsbreak.png" alt="NewsBreak">
+          </div>
+          <div class="pkg-card-top"><div class="pkg-name">NewsBreak</div></div>
+          <div class="pkg-stats"><span class="pkg-stat">20M Monthly Visitors</span><span class="pkg-stat">DA 74</span><span class="pkg-stat">Do-follow: Yes</span></div>
+          <ul class="pkg-features"><li>20M monthly visitors</li><li>Google News: Yes</li><li>Direct backlink: Yes</li><li>Published by Author</li></ul>
+          <div class="pkg-price-row"><div class="pkg-price">$79</div><div class="pkg-price-unit">/package</div></div>
+          <button class="pkg-btn" onclick="openModal(this)">Get Started</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- GROUP 4 — GLOBAL -->
+    <div class="pkg-group fade-in" style="transition-delay:0.2s;">
+      <div class="pkg-group-label">Global Outlets</div>
+      <div class="pkg-grid-4">
+        <div class="pkg-card"
+          data-pkg-name="Macau Business"
+          data-pkg-price="$119"
+          data-s1="👥 5M Visitors/mo" data-s2="📊 DA 79" data-s3="🔗 Do-follow: Yes" data-s4="📰 Google News: Yes">
+          <div class="pkg-card-banner">
+            <img src="/Macau.png" alt="Macau Business">
+          </div>
+          <div class="pkg-card-top"><div class="pkg-name">Macau Business</div></div>
+          <div class="pkg-stats"><span class="pkg-stat">5M Monthly Visitors</span><span class="pkg-stat">DA 79</span><span class="pkg-stat">Do-follow: Yes</span></div>
+          <ul class="pkg-features"><li>Direct backlink: Yes</li><li>Google News: Yes</li><li>Business niche</li><li>3 links allowed</li></ul>
+          <div class="pkg-price-row"><div class="pkg-price">$119</div><div class="pkg-price-unit">/package</div></div>
+          <button class="pkg-btn" onclick="openModal(this)">Get Started</button>
+        </div>
+        <div class="pkg-card"
+          data-pkg-name="Thailand News Network"
+          data-pkg-price="$99"
+          data-s1="👥 1.6M Visitors/mo" data-s2="📊 DA 60" data-s3="🔗 Do-follow: Yes" data-s4="📰 Google News: Yes">
+          <div class="pkg-card-banner">
+            <img src="/Thailand_News.png" alt="Thailand News Network">
+          </div>
+          <div class="pkg-card-top"><div class="pkg-name">Thailand News Network</div></div>
+          <div class="pkg-stats"><span class="pkg-stat">1.6M Monthly Visitors</span><span class="pkg-stat">DA 60</span><span class="pkg-stat">Do-follow: Yes</span></div>
+          <ul class="pkg-features"><li>Direct backlink: Yes</li><li>Google News: Yes</li><li>All major search engines</li><li>3 links allowed</li></ul>
+          <div class="pkg-price-row"><div class="pkg-price">$99</div><div class="pkg-price-unit">/package</div></div>
+          <button class="pkg-btn" onclick="openModal(this)">Get Started</button>
+        </div>
+        <div class="pkg-card"
+          data-pkg-name="The Manila Times"
+          data-pkg-price="$99"
+          data-s1="👥 1.8M Visitors/mo" data-s2="📊 DA 78" data-s3="🔗 Do-follow: No" data-s4="📰 Google News: Yes">
+          <div class="pkg-card-banner">
+            <img src="/Manila_Times.png" alt="The Manila Times">
+          </div>
+          <div class="pkg-card-top"><div class="pkg-name">The Manila Times</div></div>
+          <div class="pkg-stats"><span class="pkg-stat">1.8M Monthly Visitors</span><span class="pkg-stat">DA 78</span><span class="pkg-stat">Do-follow: No</span></div>
+          <ul class="pkg-features"><li>Direct backlink: Yes</li><li>Google News: Yes</li><li>All major search engines</li><li>3 links allowed</li></ul>
+          <div class="pkg-price-row"><div class="pkg-price">$99</div><div class="pkg-price-unit">/package</div></div>
+          <button class="pkg-btn" onclick="openModal(this)">Get Started</button>
+        </div>
+        <div class="pkg-card"
+          data-pkg-name="Sina HK"
+          data-pkg-price="$89"
+          data-s1="👥 1.5M Visitors/mo" data-s2="📊 DA 71" data-s3="🔗 Do-follow: Yes" data-s4="📰 Google News: Yes">
+          <div class="pkg-card-banner">
+            <img src="/Sina_HK.png" alt="Sina HK">
+          </div>
+          <div class="pkg-card-top"><div class="pkg-name">Sina HK</div></div>
+          <div class="pkg-stats"><span class="pkg-stat">1.5M Monthly Visitors</span><span class="pkg-stat">DA 71</span><span class="pkg-stat">Do-follow: Yes</span></div>
+          <ul class="pkg-features"><li>Direct backlink: Yes</li><li>Google News: Yes</li><li>All major search engines</li><li>3 links allowed</li></ul>
+          <div class="pkg-price-row"><div class="pkg-price">$89</div><div class="pkg-price-unit">/package</div></div>
+          <button class="pkg-btn" onclick="openModal(this)">Get Started</button>
+        </div>
+        <div class="pkg-card"
+          data-pkg-name="Blockchain Sites"
+          data-pkg-price="$99"
+          data-s1="👥 10M Visitors/mo" data-s2="📊 DA 30-90" data-s3="🔗 Do-follow: Mix" data-s4="📰 5-10 Sites">
+          <div class="pkg-card-banner">
+            <img src="/Blockchain_Sites.png" alt="Blockchain Sites">
+          </div>
+          <div class="pkg-card-top"><div class="pkg-name">Blockchain Sites</div></div>
+          <div class="pkg-stats"><span class="pkg-stat">10M Monthly Visitors</span><span class="pkg-stat">DA 30-90</span><span class="pkg-stat">5-10 Sites</span></div>
+          <ul class="pkg-features"><li>Published on 5-10 sites</li><li>Google Index: No</li><li>Direct backlink: Mixture</li><li>Fungibl, Blockswire, CoinDecryptor</li><li>FUDNGMI, Iconist, MooNFT, MoonHunt</li></ul>
+          <div class="pkg-price-row"><div class="pkg-price">$99</div><div class="pkg-price-unit">/package</div></div>
+          <button class="pkg-btn" onclick="openModal(this)">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ORDER MODAL ════════════ -->
+<div class="modal-overlay" id="orderModal" onclick="closeModalOutside(event)">
+  <div class="modal" id="modalBox">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+
+    <!-- Form view -->
+    <div id="modalFormView">
+      <div class="modal-order-label">Order Inquiry</div>
+      <div class="modal-title" id="modalTitle">Package Name</div>
+      <div class="modal-stats" id="modalStats"></div>
+
+      <form id="orderForm" onsubmit="submitOrder(event)">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="Package" id="hiddenPackage" value="">
+        <input type="hidden" name="Price" id="hiddenPrice" value="">
+
+        <div class="form-row">
+          <div class="form-group"><label>Full Name *</label><input class="form-input" name="Full Name" placeholder="John Smith" required></div>
+          <div class="form-group"><label>Email *</label><input class="form-input" type="email" name="Email" placeholder="you@example.com" required></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Phone *</label><input class="form-input" name="Phone" placeholder="+1 555 000 0000" required></div>
+          <div class="form-group"><label>Website URL *</label><input class="form-input" name="Website" placeholder="https://yoursite.com" required></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>City *</label><input class="form-input" name="City" placeholder="New York" required></div>
+          <div class="form-group"><label>State *</label><input class="form-input" name="State" placeholder="NY" required></div>
+        </div>
+        <div class="form-row full">
+          <div class="form-group"><label>Country *</label><input class="form-input" name="Country" placeholder="United States" required></div>
+        </div>
+        <div class="form-row full">
+          <div class="form-group">
+            <label>Keywords &amp; Links *</label>
+            <textarea class="form-textarea" name="Keywords and Links" placeholder="Enter your target keywords and any URLs you want included as hyperlinks in the article" required></textarea>
+          </div>
+        </div>
+
+        <div class="content-option-label">Content Option</div>
+        <div class="content-options">
+          <label class="content-option selected" id="optA">
+            <input type="radio" name="Content Option" value="Option A — I'll provide my own article (FREE)" checked onchange="updateOptionStyle()">
+            <div class="content-option-info">
+              <div class="content-option-title">Option A — I'll provide my own article <span class="content-option-price">FREE</span></div>
+              <div class="content-option-desc">350–800 words, max 5 links, in English. We reserve the right to make minor edits for publisher compliance.</div>
+            </div>
+          </label>
+          <label class="content-option" id="optB">
+            <input type="radio" name="Content Option" value="Option B — Write it for me (+$50)" onchange="updateOptionStyle()">
+            <div class="content-option-info">
+              <div class="content-option-title">Option B — Write it for me <span class="content-option-price">+$50</span></div>
+              <div class="content-option-desc">500-word SEO-optimized press release written using your keywords and links. 3 revisions included.</div>
+            </div>
+          </label>
+        </div>
+
+        <button type="submit" class="modal-submit" id="submitBtn">Submit Order Inquiry</button>
+      </form>
+    </div>
+
+    <!-- Success view -->
+    <div class="modal-success" id="modalSuccess">
+      <div class="modal-success-icon">✅</div>
+      <div class="modal-success-title">Inquiry Received!</div>
+      <p class="modal-success-text">Thank you! Your inquiry has been received. I'll be in touch within 24 hours.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ HOW IT WORKS ════════════ -->
+<section id="how-it-works">
+  <div class="container">
+    <div class="hiw-header fade-in">
+      <span class="section-label">The Process</span>
+      <h2 class="section-title">Simple <span style="color:var(--accent);">3-Step Process</span></h2>
+    </div>
+    <div class="hiw-steps">
+      <div class="hiw-step fade-in" style="transition-delay:0.05s;">
+        <div class="hiw-num">1</div>
+        <div class="hiw-title">Choose &amp; Order</div>
+        <p class="hiw-desc">Pick your outlet(s), fill out the order form, and select your content option.</p>
+      </div>
+      <div class="hiw-step fade-in" style="transition-delay:0.2s;">
+        <div class="hiw-num">2</div>
+        <div class="hiw-title">We Publish</div>
+        <p class="hiw-desc">Your press release is submitted and published on your chosen outlet within 3–5 business days.</p>
+      </div>
+      <div class="hiw-step fade-in" style="transition-delay:0.35s;">
+        <div class="hiw-num">3</div>
+        <div class="hiw-title">Get Your Report</div>
+        <p class="hiw-desc">You receive a full report with live links, screenshots, and backlink confirmation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ════════════ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-grid">
+      <div class="faq-left fade-left">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Have questions?<br><span>I have answers!</span></h2>
+        <img src="/faq.png" alt="FAQ" class="faq-img">
+      </div>
+      <div class="faq-items fade-right">
+        <div class="faq-item open">
+          <div class="faq-q">How long does it take to publish? <span class="faq-toggle">+</span></div>
+          <div class="faq-a">Most outlets publish within 3–5 business days after submission. Some premium outlets like Yahoo Finance may take 5–7 days.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can I choose multiple outlets? <span class="faq-toggle">+</span></div>
+          <div class="faq-a">Yes — you can order multiple packages. Fill out a separate order form for each outlet, or contact me to bundle them.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Do I need to write the article myself? <span class="faq-toggle">+</span></div>
+          <div class="faq-a">No — you can choose our writing service (+$50) and we'll craft a 500-word SEO-optimized press release using your keywords and links.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Will I get proof of publication? <span class="faq-toggle">+</span></div>
+          <div class="faq-a">Yes — you'll receive a full report with live URLs, screenshots, and backlink data for every outlet your story is published on.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What topics are accepted? <span class="faq-toggle">+</span></div>
+          <div class="faq-a">Most business, product, service, and brand topics are accepted. Adult content, gambling, and certain regulated industries may be restricted depending on the outlet.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How do I pay? <span class="faq-toggle">+</span></div>
+          <div class="faq-a">After submitting your inquiry, I'll send you an invoice via ACH bank transfer or Payoneer. Payment is required before submission.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA ════════════ -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-inner fade-in">
+      <span class="section-label">Let's Connect</span>
+      <h2 class="cta-title">Ready to Get <span>Published?</span></h2>
+      <p class="cta-sub">Choose your outlet above or schedule a free call to discuss the best PR strategy for your brand.</p>
+      <a data-cal-link="rafe-faruq/strategy-call" data-cal-namespace="strategy-call" data-cal-config='{"layout":"week_view","useSlotsViewOnSmallScreen":"true","theme":"auto"}' class="btn btn-primary" style="font-size:15px;padding:15px 32px;">Schedule a Free Call</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ════════════ -->
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-col footer-col-brand">
+      <img src="/rflogo.svg" alt="Rafe Faruq" style="height:64px; width:auto; display:block; margin-bottom:16px; max-width:200px;">
+      <p class="footer-tagline">Your dedicated VA &amp; Digital Ops partner.<br>Helping founders and CEOs reclaim their time.</p>
+      <div class="footer-socials">
+        <div class="footer-icon-wrap">
+          <a href="https://linkedin.com/in/rafefaruq" target="_blank" class="footer-icon-a" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <span class="footer-tooltip">LinkedIn</span>
+        </div>
+        <div class="footer-icon-wrap">
+          <a href="https://facebook.com/rafefaruq" target="_blank" class="footer-icon-a" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <span class="footer-tooltip">Facebook</span>
+        </div>
+        <div class="footer-icon-wrap">
+          <a href="https://instagram.com/rafefaruq" target="_blank" class="footer-icon-a" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <span class="footer-tooltip">Instagram</span>
+        </div>
+        <div class="footer-icon-wrap">
+          <a href="https://x.com/rafefaruq" target="_blank" class="footer-icon-a" aria-label="X Twitter"><i class="fab fa-x-twitter"></i></a>
+          <span class="footer-tooltip">X (Twitter)</span>
+        </div>
+        <div class="footer-icon-wrap">
+          <a href="https://wa.me/16468203721" target="_blank" class="footer-icon-a" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <span class="footer-tooltip">WhatsApp</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-col-title">Services</h4>
+      <a href="/virtual-assistant.html" class="footer-link">Virtual Assistant</a>
+      <a href="/lead-generation.html" class="footer-link">Lead Generation</a>
+      <a href="/website-design.html" class="footer-link">Website Design &amp; Dev</a>
+      <a href="/press-release.html" class="footer-link">Press Release &amp; Media</a>
+      <a href="/google-maps.html" class="footer-link">Google Maps Optimization</a>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-col-title">Quick Message</h4>
+      <input type="text" class="footer-input" id="footer-name" placeholder="Your name">
+      <textarea class="footer-input footer-textarea" id="footer-msg" placeholder="Your message..."></textarea>
+      <button class="footer-wa-btn" onclick="var name=document.getElementById('footer-name').value;var msg=document.getElementById('footer-msg').value;window.open('https://wa.me/16468203721?text='+encodeURIComponent('Hi Rafe, I am '+name+'. '+msg),'_blank');">
+        <i class="fab fa-whatsapp"></i> Send on WhatsApp
+      </button>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-name-wrap">
+    <div class="footer-big-name">
+      <span class="footer-cap" style="margin-right:0.08em;">R</span><span class="footer-rest">AFE</span>
+      <span class="footer-word-gap"></span>
+      <span class="footer-cap" style="margin-right:0.08em;">F</span><span class="footer-rest">ARUQ</span>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <span>© 2025 Rafe Faruq. All rights reserved.</span>
+    <span class="footer-legal-links">
+      <a href="#" onclick="openPopup('privacy')" class="footer-legal-link">Privacy Policy</a>
+      <span style="color:rgba(255,255,255,0.2);">·</span>
+      <a href="#" onclick="openPopup('tos')" class="footer-legal-link">Terms of Service</a>
+    </span>
+  </div>
+</footer>
+
+<!-- ═══════════ SCRIPTS ════════════ -->
+<script>
+// ── NAVBAR ────────────────────────────────────────────────────
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
+
+// ── HAMBURGER ─────────────────────────────────────────────────
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+hamburger.addEventListener('click', () => mobileNav.classList.toggle('open'));
+function closeMobileNav() {
+  mobileNav.classList.remove('open');
+  const menu = document.getElementById('mobileServicesMenu');
+  const arrow = document.getElementById('mobileServicesArrow');
+  if (menu) menu.classList.remove('open');
+  if (arrow) arrow.classList.remove('open');
+}
+
+function toggleMobileServices() {
+  const menu = document.getElementById('mobileServicesMenu');
+  const arrow = document.getElementById('mobileServicesArrow');
+  menu.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+// ── SCROLL ANIMATIONS ─────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in, .fade-left, .fade-right').forEach(el => observer.observe(el));
+
+// ── FAQ ACCORDION ─────────────────────────────────────────────
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// ── CONTENT OPTION STYLE ──────────────────────────────────────
+function updateOptionStyle() {
+  document.querySelectorAll('.content-option').forEach(opt => {
+    opt.classList.toggle('selected', opt.querySelector('input[type="radio"]').checked);
+  });
+}
+
+// ── ORDER MODAL ───────────────────────────────────────────────
+const orderModal = document.getElementById('orderModal');
+
+function openModal(btn) {
+  const card = btn.closest('.pkg-card');
+  const pkgName  = card.dataset.pkgName;
+  const pkgPrice = card.dataset.pkgPrice;
+  const stats    = [card.dataset.s1, card.dataset.s2, card.dataset.s3, card.dataset.s4].filter(Boolean);
+
+  document.getElementById('modalTitle').textContent = pkgName;
+  document.getElementById('hiddenPackage').value = pkgName;
+  document.getElementById('hiddenPrice').value = pkgPrice;
+
+  const statsEl = document.getElementById('modalStats');
+  statsEl.innerHTML = stats.map(s => `<span class="modal-stat-pill">${s}</span>`).join('');
+
+  // Reset form state
+  document.getElementById('orderForm').reset();
+  document.getElementById('modalFormView').style.display = 'block';
+  document.getElementById('modalSuccess').style.display = 'none';
+  document.getElementById('submitBtn').disabled = false;
+  document.getElementById('submitBtn').textContent = 'Submit Order Inquiry';
+  updateOptionStyle();
+
+  orderModal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  orderModal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOutside(e) {
+  if (e.target === orderModal) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ── ORDER FORM SUBMIT ─────────────────────────────────────────
+async function submitOrder(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  const data = Object.fromEntries(new FormData(form).entries());
+
+  // WhatsApp notification — open in new tab
+  const name    = data['Full Name'] || '';
+  const pkg     = data['Package'] || '';
+  const email   = data['Email'] || '';
+  const waText  = encodeURIComponent(`New PR Order Inquiry: ${name} | ${pkg} | ${email}`);
+  window.open(`https://wa.me/16468203721?text=${waText}`, '_blank');
+
+  // Submit to FormSubmit.co via AJAX
+  try {
+    await fetch('https://formsubmit.co/ajax/rafefaruq@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+  } catch (_) { /* non-blocking */ }
+
+  // Show success
+  document.getElementById('modalFormView').style.display = 'none';
+  document.getElementById('modalSuccess').style.display = 'block';
+}
+
+// ── FOOTER WHATSAPP ───────────────────────────────────────────
+// Footer WhatsApp handled via inline onclick on footer-wa-btn
+
+// ── PR SLIDESHOW ──────────────────────────────────────────────
+(function () {
+  const slides = document.querySelectorAll('.pr-slide');
+  if (!slides.length) return;
+  let idx = 0;
+  setInterval(function () {
+    slides[idx].classList.remove('active');
+    idx = (idx + 1) % slides.length;
+    slides[idx].classList.add('active');
+  }, 3500);
+})();
+
+// ── HERO PARTICLES ────────────────────────────────────────────
+(function () {
+  const canvas = document.getElementById('hero-particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles;
+  const rand = (a, b) => Math.random() * (b - a) + a;
+  function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+  function init() {
+    particles = [];
+    for (let i = 0; i < 120; i++) {
+      const roll = Math.random();
+      let r, speed, glow;
+      if (roll < 0.80) { r = rand(0.5,1.5); speed = rand(0.05,0.3); glow = false; }
+      else if (roll < 0.95) { r = rand(2,4); speed = rand(0.1,0.3); glow = false; }
+      else { r = rand(5,9); speed = rand(0.2,0.5); glow = true; }
+      const a = rand(0, Math.PI*2);
+      particles.push({ x: rand(0,W), y: rand(0,H), r, vx: Math.cos(a)*speed, vy: Math.sin(a)*speed, opacity: rand(0.1,0.6), glow, pulse: rand(0,Math.PI*2) });
+    }
+  }
+  function draw(ts) {
+    ctx.clearRect(0,0,W,H);
+    const t = ts/1000;
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < -p.r) p.x = W+p.r; else if (p.x > W+p.r) p.x = -p.r;
+      if (p.y < -p.r) p.y = H+p.r; else if (p.y > H+p.r) p.y = -p.r;
+      ctx.save();
+      if (p.glow) { ctx.shadowBlur = 15*(0.5+0.5*Math.sin(t*1.8+p.pulse)); ctx.shadowColor = '#00D4FF'; }
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle = `rgba(0,212,255,${p.opacity})`; ctx.fill(); ctx.restore();
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', () => { resize(); init(); });
+  resize(); init(); requestAnimationFrame(draw);
+})();
+
+// ── FOOTER PARTICLES ──────────────────────────────────────────
+(function () {
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles;
+  function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+  function init() {
+    particles = [];
+    const count = Math.floor((W*H)/8000);
+    for (let i = 0; i < count; i++) {
+      particles.push({ x: Math.random()*W, y: Math.random()*H, z: Math.random(), r: Math.random()*1.5+0.3, speed: Math.random()*0.4+0.1, opacity: Math.random()*0.6+0.2 });
+    }
+  }
+  function draw() {
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p => {
+      p.z -= p.speed*0.003;
+      if (p.z <= 0) { p.z = 1; p.x = Math.random()*W; p.y = Math.random()*H; }
+      const s = 1-p.z, px = (p.x-W/2)*s+W/2, py = (p.y-H/2)*s+H/2;
+      ctx.beginPath(); ctx.arc(px, py, Math.max(0.1,p.r*s*2), 0, Math.PI*2);
+      ctx.fillStyle = `rgba(0,212,255,${p.opacity*(1-p.z)})`; ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', () => { resize(); init(); });
+  resize(); init(); draw();
+})();
+</script>
+<style>
+#legal-popup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px; }
+#legal-popup-box { background: #111; border: 0.5px solid rgba(0,212,255,0.2); border-radius: 14px; width: 100%; max-width: 720px; max-height: 85vh; display: flex; flex-direction: column; overflow: hidden; }
+#legal-popup-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 28px; border-bottom: 0.5px solid rgba(255,255,255,0.07); }
+#legal-popup-title { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; color: #fff; margin: 0; }
+#legal-popup-close { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.5); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+#legal-popup-close:hover { border-color: #00D4FF; color: #00D4FF; }
+#legal-popup-body { padding: 24px 28px; overflow-y: auto; font-family: 'Poppins', sans-serif; font-size: 13px; line-height: 1.8; color: rgba(255,255,255,0.55); }
+#legal-popup-body h3 { color: #00D4FF; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin: 20px 0 8px; }
+#legal-popup-body p { margin: 0 0 12px; }
+#legal-popup-body a { color: #00D4FF; }
+</style>
+<div id="legal-popup-overlay" style="display:none;" onclick="if(event.target===this)closeLegalPopup()">
+  <div id="legal-popup-box">
+    <div id="legal-popup-header">
+      <h2 id="legal-popup-title"></h2>
+      <button onclick="closeLegalPopup()" id="legal-popup-close">&#x2715;</button>
+    </div>
+    <div id="legal-popup-body"></div>
+  </div>
+</div>
+<script>
+const legalContent = {
+  privacy: {
+    title: "Privacy Policy",
+    body: `<p>Last updated: June 2025. This Privacy Policy explains how Rafe Faruq (legal name: Md Omar Faruq) collects and uses your information.</p><h3>Information We Collect</h3><p>We collect information you provide directly: your name, email address, phone number, and message when you use our contact forms or book a call.</p><h3>How We Use Your Information</h3><p>Your information is used solely to respond to your inquiries and deliver agreed services. We do not sell or share your data with third parties.</p><h3>Third-Party Tools</h3><p>We use the following tools which may process your data: FormSubmit.co (form delivery), Cal.com (appointment booking), WhatsApp Business (messaging). Each has their own privacy policy.</p><h3>Cookies</h3><p>This website uses minimal cookies for functionality only. No tracking or advertising cookies are used.</p><h3>Data Retention</h3><p>We retain your contact information only as long as necessary to fulfill the service or respond to your inquiry.</p><h3>Your Rights</h3><p>You may request deletion of your data at any time by emailing <a href="mailto:rafefaruq@gmail.com">rafefaruq@gmail.com</a>.</p><h3>Contact</h3><p>Rafe Faruq &middot; rafefaruq@gmail.com &middot; WhatsApp: +1 (646) 820-3721</p>`
+  },
+  tos: {
+    title: "Terms of Service",
+    body: `<p>Last updated: June 2025. These Terms govern all services provided by Md Omar Faruq, operating as Rafe Faruq, a freelance digital operations professional based in Bangladesh.</p><h3>Services</h3><p>Services include Virtual Assistant, Lead Generation, Website Design &amp; Development, Press Release &amp; Media, and Google Maps Optimization, as described on this website.</p><h3>Payment Terms</h3><p>Payment is due as specified per service package. Accepted methods: Payoneer and ACH bank transfer (US clients).</p><p><strong style="color:#fff;">ACH Payment Details (US Clients):</strong><br>Bank: First Century Bank<br>Bank Address: 1731 N Elm St, Commerce, GA 30529, USA<br>Routing (ABA): 061120084<br>Account Type: Checking<br>Beneficiary Name: Md Omar Faruq<br><em style="color:rgba(255,255,255,0.35);">Full account number provided on invoice.</em></p><h3>No Refund Policy</h3><p>All payments are non-refundable. Once work has commenced, no refunds will be issued under any circumstances. By making payment, the client acknowledges and agrees to this policy. This applies to all service packages without exception.</p><h3>Revisions</h3><p>Revisions are limited to the number specified per package. Additional revisions beyond the included limit will be billed separately.</p><h3>Client Responsibilities</h3><p>The client is responsible for providing accurate information, timely feedback, and necessary access required to complete the work. Delays caused by the client do not entitle the client to a refund.</p><h3>Delivery Timeline</h3><p>Timelines are estimates and may vary based on project complexity and client responsiveness. Rafe Faruq is not liable for delays caused by third-party platforms or client delays.</p><h3>Intellectual Property</h3><p>Upon full payment, the client owns the final deliverables. Rafe Faruq retains the right to display work in portfolio unless otherwise agreed in writing.</p><h3>Governing Law</h3><p>These terms are governed by the laws of Bangladesh. Any disputes shall be resolved through mutual agreement first, then arbitration if necessary.</p><h3>Contact</h3><p>Rafe Faruq &middot; rafefaruq@gmail.com &middot; WhatsApp: +1 (646) 820-3721</p>`
+  }
+};
+function openPopup(type) {
+  var content = legalContent[type];
+  document.getElementById('legal-popup-title').textContent = content.title;
+  document.getElementById('legal-popup-body').innerHTML = content.body;
+  document.getElementById('legal-popup-overlay').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeLegalPopup() {
+  document.getElementById('legal-popup-overlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLegalPopup(); });
+</script>
+</body>
+</html>
