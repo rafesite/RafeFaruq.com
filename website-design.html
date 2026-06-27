@@ -809,7 +809,7 @@
           <div class="laptop-frame" onclick="openLightbox(1)">
             <div class="laptop-top-bar"><span class="laptop-cam"></span></div>
             <div class="laptop-screen">
-              <img class="laptop-scroll-img" src="/naturopathic-weightloss.jpg" alt="Medical Weight Loss &amp; Telehealth Platform" loading="lazy">
+              <img class="laptop-scroll-img" src="/naturopathic-weightloss.jpg" alt="Medical Weight Loss &amp; Telehealth Platform" loading="eager">
             </div>
             <div class="laptop-base"><span class="laptop-hinge"></span></div>
             <span class="port-click-hint">View Fullscreen ↗</span>
@@ -823,7 +823,7 @@
           <div class="laptop-frame" onclick="openLightbox(2)">
             <div class="laptop-top-bar"><span class="laptop-cam"></span></div>
             <div class="laptop-screen">
-              <img class="laptop-scroll-img" src="/denttree-dental-products-website.webp" alt="Dental Lab Products &amp; Ordering Platform" loading="lazy">
+              <img class="laptop-scroll-img" src="/denttree-dental-products-website.webp" alt="Dental Lab Products &amp; Ordering Platform" loading="eager">
             </div>
             <div class="laptop-base"><span class="laptop-hinge"></span></div>
             <span class="port-click-hint">View Fullscreen ↗</span>
@@ -837,7 +837,7 @@
           <div class="laptop-frame" onclick="openLightbox(3)">
             <div class="laptop-top-bar"><span class="laptop-cam"></span></div>
             <div class="laptop-screen">
-              <img class="laptop-scroll-img" src="/gr-homecare-agency-website.webp" alt="Home Health Care Agency Website" loading="lazy">
+              <img class="laptop-scroll-img" src="/gr-homecare-agency-website.webp" alt="Home Health Care Agency Website" loading="eager">
             </div>
             <div class="laptop-base"><span class="laptop-hinge"></span></div>
             <span class="port-click-hint">View Fullscreen ↗</span>
@@ -851,7 +851,7 @@
           <div class="laptop-frame" onclick="openLightbox(4)">
             <div class="laptop-top-bar"><span class="laptop-cam"></span></div>
             <div class="laptop-screen">
-              <img class="laptop-scroll-img" src="/optimal-bridges-housing-website.webp" alt="Supportive Housing &amp; Reentry Program Site" loading="lazy">
+              <img class="laptop-scroll-img" src="/optimal-bridges-housing-website.webp" alt="Supportive Housing &amp; Reentry Program Site" loading="eager">
             </div>
             <div class="laptop-base"><span class="laptop-hinge"></span></div>
             <span class="port-click-hint">View Fullscreen ↗</span>
@@ -865,7 +865,7 @@
           <div class="laptop-frame" onclick="openLightbox(5)">
             <div class="laptop-top-bar"><span class="laptop-cam"></span></div>
             <div class="laptop-screen">
-              <img class="laptop-scroll-img" src="/edoardo-iannotta-geometra-website.webp" alt="Construction &amp; Property Management Site" loading="lazy">
+              <img class="laptop-scroll-img" src="/edoardo-iannotta-geometra-website.webp" alt="Construction &amp; Property Management Site" loading="eager">
             </div>
             <div class="laptop-base"><span class="laptop-hinge"></span></div>
             <span class="port-click-hint">View Fullscreen ↗</span>
@@ -879,7 +879,7 @@
           <div class="laptop-frame" onclick="openLightbox(6)">
             <div class="laptop-top-bar"><span class="laptop-cam"></span></div>
             <div class="laptop-screen">
-              <img class="laptop-scroll-img" src="/greenheat-plumbing-website.webp" alt="Plumbing &amp; Heating Services Website" loading="lazy">
+              <img class="laptop-scroll-img" src="/greenheat-plumbing-website.webp" alt="Plumbing &amp; Heating Services Website" loading="eager">
             </div>
             <div class="laptop-base"><span class="laptop-hinge"></span></div>
             <span class="port-click-hint">View Fullscreen ↗</span>
@@ -893,7 +893,7 @@
           <div class="laptop-frame" onclick="openLightbox(7)">
             <div class="laptop-top-bar"><span class="laptop-cam"></span></div>
             <div class="laptop-screen">
-              <img class="laptop-scroll-img" src="/dental-delight-dds-website.webp" alt="Cosmetic Dentistry Practice Website" loading="lazy">
+              <img class="laptop-scroll-img" src="/dental-delight-dds-website.webp" alt="Cosmetic Dentistry Practice Website" loading="eager">
             </div>
             <div class="laptop-base"><span class="laptop-hinge"></span></div>
             <span class="port-click-hint">View Fullscreen ↗</span>
@@ -907,7 +907,7 @@
           <div class="laptop-frame" onclick="openLightbox(8)">
             <div class="laptop-top-bar"><span class="laptop-cam"></span></div>
             <div class="laptop-screen">
-              <img class="laptop-scroll-img" src="/horizon-research-ecommerce-website.jpg" alt="Research Compounds E-commerce Store" loading="lazy">
+              <img class="laptop-scroll-img" src="/horizon-research-ecommerce-website.jpg" alt="Research Compounds E-commerce Store" loading="eager">
             </div>
             <div class="laptop-base"><span class="laptop-hinge"></span></div>
             <span class="port-click-hint">View Fullscreen ↗</span>
@@ -921,7 +921,7 @@
           <div class="laptop-frame" onclick="openLightbox(9)">
             <div class="laptop-top-bar"><span class="laptop-cam"></span></div>
             <div class="laptop-screen">
-              <img class="laptop-scroll-img" src="/enduring-hearts-healthcare-website.webp" alt="Healthcare &amp; Personal Support Services Site" loading="lazy">
+              <img class="laptop-scroll-img" src="/enduring-hearts-healthcare-website.webp" alt="Healthcare &amp; Personal Support Services Site" loading="eager">
             </div>
             <div class="laptop-base"><span class="laptop-hinge"></span></div>
             <span class="port-click-hint">View Fullscreen ↗</span>
@@ -1255,7 +1255,14 @@ function goToSlide(n) {
   portSlides[portIndex].classList.add('active');
   document.querySelectorAll('.port-dot').forEach((d, i) => d.classList.toggle('active', i === portIndex));
   var img = portSlides[portIndex].querySelector('.laptop-scroll-img');
-  if (img && img._tryAnim) img._tryAnim();
+  if (img && img._tryAnim) {
+    // Double RAF: first frame commits display:block to layout, second frame has real dimensions
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        img._tryAnim();
+      });
+    });
+  }
 }
 
 document.getElementById('portPrev').addEventListener('click', () => { goToSlide(portIndex - 1); });
@@ -1275,15 +1282,15 @@ document.getElementById('portNext').addEventListener('click', () => { goToSlide(
 // ── LAPTOP SCROLL ANIMATIONS ──────────────────────────────────
 function startScrollAnim(img) {
   if (img._scrollAnim) { img._scrollAnim.cancel(); img._scrollAnim = null; }
-  img.style.transform = 'translateY(0)'; // ensure visible while calculating
+  img.style.transform = 'translateY(0)';
 
-  var screenEl  = img.parentElement;
-  var screenH   = screenEl.clientHeight;
-  var renderedW = img.clientWidth;
-  var renderedH = img.naturalWidth > 0 ? img.naturalHeight * (renderedW / img.naturalWidth) : 0;
+  var screenEl   = img.parentElement;
+  var screenH    = screenEl.clientHeight;
+  var renderedW  = img.clientWidth;
+  var renderedH  = img.naturalWidth > 0 ? img.naturalHeight * (renderedW / img.naturalWidth) : 0;
   var scrollDist = Math.max(0, renderedH - screenH);
 
-  // Fallback: show statically if dimensions are not yet available
+  // Fallback: show statically if layout not ready yet — ResizeObserver will retry
   if (scrollDist < 20 || screenH === 0 || renderedW === 0) return;
 
   var scrollMs = 22000, pauseMs = 2000, total = pauseMs + scrollMs + pauseMs;
@@ -1291,40 +1298,62 @@ function startScrollAnim(img) {
   var p1 = (pauseMs + scrollMs) / total;
 
   img._scrollAnim = img.animate([
-    { transform: 'translateY(0)',                      offset: 0,  easing: 'ease-in-out' },
-    { transform: 'translateY(0)',                      offset: p0, easing: 'ease-in-out' },
-    { transform: 'translateY(-' + scrollDist + 'px)', offset: p1, easing: 'ease-in-out' },
+    { transform: 'translateY(0)',                      offset: 0,   easing: 'ease-in-out' },
+    { transform: 'translateY(0)',                      offset: p0,  easing: 'ease-in-out' },
+    { transform: 'translateY(-' + scrollDist + 'px)', offset: p1,  easing: 'ease-in-out' },
     { transform: 'translateY(-' + scrollDist + 'px)', offset: 0.96 },
-    { transform: 'translateY(0)',                      offset: 1   }
+    { transform: 'translateY(0)',                      offset: 1    }
   ], { duration: total, iterations: Infinity });
 }
 
 function initScrollAnim(img) {
-  // Register hover listeners once — they reference img._scrollAnim dynamically
   var frame = img.closest('.laptop-frame');
   frame.addEventListener('mouseenter', function() { if (img._scrollAnim) img._scrollAnim.pause(); });
   frame.addEventListener('mouseleave', function() { if (img._scrollAnim) img._scrollAnim.play(); });
 
-  // _tryAnim is called each time the slide becomes active
+  // Called on every slide activation (after double RAF)
   img._tryAnim = function() {
     if (img.complete && img.naturalHeight > 0) {
       startScrollAnim(img);
     } else {
-      // Image not yet loaded — wait for it, then start
+      // Not loaded yet — show transparent placeholder, retry when loaded
       img.style.transform = 'translateY(0)';
-      img.addEventListener('load', function onLoad() {
-        img.removeEventListener('load', onLoad);
-        startScrollAnim(img);
-      });
+      if (!img._loadBound) {
+        img._loadBound = true;
+        img.addEventListener('load', function onLoad() {
+          img.removeEventListener('load', onLoad);
+          img._loadBound = false;
+          requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+              startScrollAnim(img);
+            });
+          });
+        }, { once: true });
+      }
     }
   };
+
+  // ResizeObserver: catches the moment screen height goes from 0 → real value
+  // (slide becomes active after the initial _tryAnim call ran too early)
+  var ro = new ResizeObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.contentRect.height > 0 && !img._scrollAnim) {
+        if (img.complete && img.naturalHeight > 0) startScrollAnim(img);
+      }
+    });
+  });
+  ro.observe(img.parentElement); // observe .laptop-screen
 }
 
 document.querySelectorAll('.laptop-scroll-img').forEach(initScrollAnim);
 
-// Bootstrap animation for the initially active slide
-var firstImg = portSlides[0] && portSlides[0].querySelector('.laptop-scroll-img');
-if (firstImg && firstImg._tryAnim) firstImg._tryAnim();
+// Bootstrap animation for the initially active slide (already display:block)
+requestAnimationFrame(function() {
+  requestAnimationFrame(function() {
+    var firstImg = portSlides[0] && portSlides[0].querySelector('.laptop-scroll-img');
+    if (firstImg && firstImg._tryAnim) firstImg._tryAnim();
+  });
+});
 
 // ── LIGHTBOX ──────────────────────────────────────────────────
 const lightbox = document.getElementById('lightbox');
