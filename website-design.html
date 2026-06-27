@@ -1254,6 +1254,8 @@ function goToSlide(n) {
   portIndex = (n + portSlides.length) % portSlides.length;
   portSlides[portIndex].classList.add('active');
   document.querySelectorAll('.port-dot').forEach((d, i) => d.classList.toggle('active', i === portIndex));
+  var img = portSlides[portIndex].querySelector('.laptop-scroll-img');
+  if (img && img._tryAnim) img._tryAnim();
 }
 
 document.getElementById('portPrev').addEventListener('click', () => { goToSlide(portIndex - 1); });
@@ -1271,45 +1273,58 @@ document.getElementById('portNext').addEventListener('click', () => { goToSlide(
 })();
 
 // ── LAPTOP SCROLL ANIMATIONS ──────────────────────────────────
+function startScrollAnim(img) {
+  if (img._scrollAnim) { img._scrollAnim.cancel(); img._scrollAnim = null; }
+  img.style.transform = 'translateY(0)'; // ensure visible while calculating
+
+  var screenEl  = img.parentElement;
+  var screenH   = screenEl.clientHeight;
+  var renderedW = img.clientWidth;
+  var renderedH = img.naturalWidth > 0 ? img.naturalHeight * (renderedW / img.naturalWidth) : 0;
+  var scrollDist = Math.max(0, renderedH - screenH);
+
+  // Fallback: show statically if dimensions are not yet available
+  if (scrollDist < 20 || screenH === 0 || renderedW === 0) return;
+
+  var scrollMs = 22000, pauseMs = 2000, total = pauseMs + scrollMs + pauseMs;
+  var p0 = pauseMs / total;
+  var p1 = (pauseMs + scrollMs) / total;
+
+  img._scrollAnim = img.animate([
+    { transform: 'translateY(0)',                      offset: 0,  easing: 'ease-in-out' },
+    { transform: 'translateY(0)',                      offset: p0, easing: 'ease-in-out' },
+    { transform: 'translateY(-' + scrollDist + 'px)', offset: p1, easing: 'ease-in-out' },
+    { transform: 'translateY(-' + scrollDist + 'px)', offset: 0.96 },
+    { transform: 'translateY(0)',                      offset: 1   }
+  ], { duration: total, iterations: Infinity });
+}
+
 function initScrollAnim(img) {
-  var screenEl = img.parentElement;
+  // Register hover listeners once — they reference img._scrollAnim dynamically
+  var frame = img.closest('.laptop-frame');
+  frame.addEventListener('mouseenter', function() { if (img._scrollAnim) img._scrollAnim.pause(); });
+  frame.addEventListener('mouseleave', function() { if (img._scrollAnim) img._scrollAnim.play(); });
 
-  function start() {
-    var screenH = screenEl.clientHeight;
-    var naturalH = img.naturalHeight;
-    var naturalW = img.naturalWidth;
-    var renderedW = img.clientWidth;
-    var renderedH = naturalW > 0 ? naturalH * (renderedW / naturalW) : 0;
-    var scrollDist = Math.max(0, renderedH - screenH);
-    if (scrollDist < 20) return;
-
-    // 2s pause at top, ~22s scroll down, 2s pause at bottom, snap back
-    var scrollMs = 22000;
-    var pauseMs  = 2000;
-    var total    = pauseMs + scrollMs + pauseMs;
-    var p0 = pauseMs / total;                      // end of top pause
-    var p1 = (pauseMs + scrollMs) / total;         // end of scroll down
-    var p2 = (pauseMs + scrollMs + pauseMs) / total; // end of bottom pause (= 1)
-
-    var anim = img.animate([
-      { transform: 'translateY(0)',                      offset: 0,  easing: 'ease-in-out' },
-      { transform: 'translateY(0)',                      offset: p0, easing: 'ease-in-out' },
-      { transform: 'translateY(-' + scrollDist + 'px)', offset: p1, easing: 'ease-in-out' },
-      { transform: 'translateY(-' + scrollDist + 'px)', offset: p2 },
-      { transform: 'translateY(0)',                      offset: 1  }
-    ], { duration: total, iterations: Infinity });
-
-    img._scrollAnim = anim;
-    var frame = img.closest('.laptop-frame');
-    frame.addEventListener('mouseenter', function() { if (img._scrollAnim) img._scrollAnim.pause(); });
-    frame.addEventListener('mouseleave', function() { if (img._scrollAnim) img._scrollAnim.play(); });
-  }
-
-  if (img.complete && img.naturalHeight > 0) { start(); }
-  else { img.addEventListener('load', start); }
+  // _tryAnim is called each time the slide becomes active
+  img._tryAnim = function() {
+    if (img.complete && img.naturalHeight > 0) {
+      startScrollAnim(img);
+    } else {
+      // Image not yet loaded — wait for it, then start
+      img.style.transform = 'translateY(0)';
+      img.addEventListener('load', function onLoad() {
+        img.removeEventListener('load', onLoad);
+        startScrollAnim(img);
+      });
+    }
+  };
 }
 
 document.querySelectorAll('.laptop-scroll-img').forEach(initScrollAnim);
+
+// Bootstrap animation for the initially active slide
+var firstImg = portSlides[0] && portSlides[0].querySelector('.laptop-scroll-img');
+if (firstImg && firstImg._tryAnim) firstImg._tryAnim();
 
 // ── LIGHTBOX ──────────────────────────────────────────────────
 const lightbox = document.getElementById('lightbox');
