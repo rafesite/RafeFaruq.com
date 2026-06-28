@@ -1070,22 +1070,31 @@
     }
     .footer-input:focus { border-color: rgba(0,212,255,0.4); }
     .footer-textarea { height: 80px; resize: none; }
-    .footer-wa-btn {
-      background: #25D366;
-      color: #fff;
+    .footer-form-row { display: flex; gap: 8px; }
+    .footer-form-row .footer-input { flex: 1; min-width: 0; }
+    .footer-submit-btn {
+      width: 100%;
+      background: #00D4FF;
+      color: #000;
       border: none;
       border-radius: 8px;
       padding: 11px 16px;
       font-family: 'Poppins', sans-serif;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
       transition: background 0.2s;
+      margin-top: 2px;
     }
-    .footer-wa-btn:hover { background: #1ebe5d; }
+    .footer-submit-btn:hover { background: #00b8e0; }
+    .footer-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .footer-success {
+      display: none;
+      color: #00D4FF;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 0 4px;
+    }
     .footer-divider {
       border: none;
       border-top: 0.5px solid rgba(0,212,255,0.12);
@@ -1705,7 +1714,7 @@
           <span class="footer-tooltip">X (Twitter)</span>
         </div>
         <div class="footer-icon-wrap">
-          <a href="https://wa.me/16468203721" target="_blank" class="footer-icon-a" aria-label="WhatsApp">
+          <a href="https://wa.me/16468203721?text=Hi%20Rafe%2C%20I'm%20reaching%20out%20from%20your%20website%20(rafefaruq.com)%20%E2%80%94%20I'd%20like%20to%20talk%20about%20%5Byour%20service%5D." target="_blank" class="footer-icon-a" aria-label="WhatsApp">
             <i class="fab fa-whatsapp"></i>
           </a>
           <span class="footer-tooltip">WhatsApp</span>
@@ -1723,19 +1732,19 @@
       <a href="/google-maps.html" class="footer-link">Google Maps Optimization</a>
     </div>
 
-    <!-- Column 3: WhatsApp quick message -->
+    <!-- Column 3: Contact form -->
     <div class="footer-col">
       <h4 class="footer-col-title">Quick Message</h4>
-      <input type="text" class="footer-input" id="footer-name" placeholder="Your name">
-      <textarea class="footer-input footer-textarea" id="footer-msg" placeholder="Your message..."></textarea>
-      <button class="footer-wa-btn" onclick="
-        var name = document.getElementById('footer-name').value;
-        var msg = document.getElementById('footer-msg').value;
-        var text = 'Hi Rafe, I am ' + name + '. ' + msg;
-        window.open('https://wa.me/16468203721?text=' + encodeURIComponent(text), '_blank');
-      ">
-        <i class="fab fa-whatsapp"></i> Send on WhatsApp
-      </button>
+      <form id="footer-contact-form" novalidate>
+        <div class="footer-form-row">
+          <input type="text" class="footer-input" id="footer-fname" name="name" placeholder="Name *" required>
+          <input type="tel" class="footer-input" id="footer-phone" name="phone" placeholder="Phone">
+        </div>
+        <input type="email" class="footer-input" id="footer-email" name="email" placeholder="Email *" required style="width:100%;box-sizing:border-box;">
+        <textarea class="footer-input footer-textarea" id="footer-msg" name="message" placeholder="Message *" required style="width:100%;box-sizing:border-box;"></textarea>
+        <button type="submit" class="footer-submit-btn">Send Message</button>
+        <div class="footer-success" id="footer-success">Thanks! I'll get back to you soon.</div>
+      </form>
     </div>
 
   </div>
@@ -1859,8 +1868,42 @@ function switchPricing(type) {
   startTimer();
 })();
 
-// ── WHATSAPP FORM ─────────────────────────────────────────────
-// Footer WhatsApp handled via inline onclick on footer-wa-btn
+// ── CONTACT FORM ──────────────────────────────────────────────
+(function() {
+  var form = document.getElementById('footer-contact-form');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('.footer-submit-btn');
+    var successEl = document.getElementById('footer-success');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    fetch('https://formspree.io/f/mlgynppw', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: document.getElementById('footer-fname').value,
+        phone: document.getElementById('footer-phone').value,
+        email: document.getElementById('footer-email').value,
+        message: document.getElementById('footer-msg').value
+      })
+    }).then(function(r) {
+      if (r.ok) {
+        form.reset();
+        successEl.style.display = 'block';
+        btn.style.display = 'none';
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
+        alert('Something went wrong. Please try again.');
+      }
+    }).catch(function() {
+      btn.disabled = false;
+      btn.textContent = 'Send Message';
+      alert('Something went wrong. Please try again.');
+    });
+  });
+})();
 
 // ── HERO PARTICLES CANVAS ─────────────────────────────────────
 (function () {
