@@ -37,7 +37,7 @@
       --radius-sm: 10px;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
     body {
       font-family: 'Poppins', sans-serif;
@@ -1414,9 +1414,7 @@
       .footer-name-wrap { padding: 24px 4% 0; overflow: visible; text-align: center; }
       .hero-visual { justify-content: center; }
       .hero-circle { width: 240px; height: 240px; }
-      .icon-box { grid-template-columns: repeat(3, 30px); grid-template-rows: repeat(2, 30px); gap: 5px; padding: 8px; }
-      .tool-icon { width: 30px; height: 30px; border-radius: 7px; }
-      .tool-icon img { padding: 4px; }
+      .icon-box { display: none; }
       .icon-box-left { left: -55px; top: 165px; }
       .icon-box-right { left: 178px; top: 5px; }
     }
